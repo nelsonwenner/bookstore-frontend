@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-12">
+    <form action="" method="post" #form="ngForm" (ngSubmit)="signin(form)" novalidate>
+
+      <!-- Input username -->
+      <div class="form-group">
+        <label for="username"> Username </label>
+        <input type="text" name="username" id="username" [(ngModel)]="user.username" #username="ngModel" class="form-control">
+      </div>
+
+      <!-- Input password -->
+      <div class="form-group">
+        <label for="password"> Password </label>
+        <input type="text" name="password" id="password" [(ngModel)]="user.password" #password="ngModel" class="form-control">
+      </div>
+
+      <!-- Button -->
+      <div class="form-group">
+        <Button type="submit" class="btn btn-primary btn-sm"> Entrar </Button>
+      </div>
+
+    </form>
+  </div>
+</div>
