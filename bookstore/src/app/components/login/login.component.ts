@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 /* Add imports*/
-import { FormGroup } from '@angular/forms';
+import { SignupComponent } from '../common/signup/signup.component';
 import { UsersService } from './../../services/users.service';
-
-/* Add Imports */
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from "@angular/router";
 
 @Component({
@@ -12,11 +12,20 @@ import { Router } from "@angular/router";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
+
+  loginForm = new FormGroup({
+      email: new FormControl(''),
+      password: new FormControl('')
+  });
 
   private user:any = {}
 
-  constructor(private usersService: UsersService, private router: Router) { }
+  constructor(public dialogRef: MatDialogRef<LoginComponent>,
+    public dialog: MatDialog,
+    private usersService: UsersService,
+    private router: Router) { }
 
   ngOnInit() {
 
@@ -39,9 +48,10 @@ export class LoginComponent implements OnInit {
           token: response['token'],
           user_id: response['user_id'],
           username: response['username'],
-          email: response['email']
+          email: response['email'],
+          is_staff: response['is_staff']
         }
-  
+
         localStorage.setItem('token', JSON.stringify(data));
         this.router.navigate(['/dashboard']);
         return;
@@ -52,4 +62,17 @@ export class LoginComponent implements OnInit {
       console.log("Formulario invalido");
     }
   }
+
+  onSignUpClick() {
+    this.dialogRef.close();
+    setTimeout(() => {
+      const dialogRef = this.dialog.open(SignupComponent,{
+        data: {}
+      });
+      dialogRef.afterClosed().subscribe(
+        res => console.log(res)
+      );
+    }, 300);
+  }
+
 }

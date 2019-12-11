@@ -1,24 +1,33 @@
-<div class="row">
-  <div class="col-md-12">
-    <form action="" method="post" #form="ngForm" (ngSubmit)="signin(form)" novalidate>
+<h2 style="text-align: center; column-rule: white; margin-bottom: 30px;">Welcome</h2>
+<form style="width: 320px; height: 300px;" class="register-form" novalidate="" [formGroup]="loginForm">
+    <div class="division" style="display:flex;  margin-bottom: 30px;">
+        <div class="line"></div>
+        <span style="margin: 0px 15px;">Client</span>
+        <div class="line"></div>
+    </div>
 
-      <!-- Input username -->
-      <div class="form-group">
-        <label for="username"> Username </label>
-        <input type="text" name="username" id="username" [(ngModel)]="user.username" #username="ngModel" class="form-control">
-      </div>
+    <div class="input-group form-group-no-border">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <mat-icon>email</mat-icon>
+            </span>
+        </div>
+        <input class="form-control" placeholder="Email" type="text" formControlName="email">
+    </div>
 
-      <!-- Input password -->
-      <div class="form-group">
-        <label for="password"> Password </label>
-        <input type="text" name="password" id="password" [(ngModel)]="user.password" #password="ngModel" class="form-control">
-      </div>
+    <div style="margin-top:20px;" class="input-group form-group-no-border">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <mat-icon>vpn_key</mat-icon>
+            </span>
+        </div>
+        <input class="form-control" placeholder="Password" type="text" formControlName="password">
+    </div>
 
-      <!-- Button -->
-      <div class="form-group">
-        <Button type="submit" class="btn btn-primary btn-sm"> Entrar </Button>
-      </div>
+    <button class="btn btn-block btn-round" style="margin-top:30px; background-color: #fbb710; color:white;">Login</button>
 
-    </form>
-  </div>
-</div>
+    <div style="display:flex; justify-content: space-between;">
+        <a class="btn btn-link" style="margin-top:20px; color:#fbb710;" (click)="onSignUpClick()">Sign up</a>
+    </div>
+
+</form>

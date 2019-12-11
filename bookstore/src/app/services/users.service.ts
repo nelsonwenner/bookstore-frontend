@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 /* Add imports */
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 const ApiEndpoints = {
   login: 'api-token',
@@ -14,13 +15,11 @@ const ApiEndpoints = {
 
 export class UsersService {
 
-  private UriApi:string = "http://localhost:8000";
-
   constructor(private http: HttpClient) { }
 
   public login(user: any) {
 
-    let uri = `${this.UriApi}/${ApiEndpoints.login}`;
+    let uri = `${environment.ApiRoot}/${ApiEndpoints.login}`;
 
     return this.http.post(uri, JSON.stringify(user), this.loadHeaders());
 
@@ -32,7 +31,7 @@ export class UsersService {
       'Content-Type': "application/json",
       "Authorization": `Bearer ${token}`
     });
-
+    
     return { headers };
   }
 

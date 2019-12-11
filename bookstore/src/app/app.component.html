@@ -1,14 +1,7 @@
-<div class="container">
-  <ul class="nav">
-    <li class="nav-item">
-      <a class="nav-link active" href="#">Home</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Cadastro</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/login">Login</a>
-    </li>
-  </ul>
+<mat-drawer-container hasBackdrop="true" >
+
+  <app-header (sidenave)="toggelNavbar($event)"></app-header>
   <router-outlet></router-outlet>
-</div>
+
+</mat-drawer-container>
+

@@ -1,0 +1,44 @@
+<h2 style="text-align: center; column-rule: white; margin-bottom: 30px;">Register</h2>
+<form style="width: 320px;" [formGroup]="signupForm">
+    <div class="division" style="display:flex;">
+        <div class="line"></div>
+        <span style="margin: 0px 15px;">or</span>
+        <div class="line"></div>
+    </div>
+    <div class="input-group form-group-no-border mg-20">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <mat-icon>person</mat-icon>
+            </span>
+        </div>
+        <input class="form-control" placeholder="Name" type="text" formControlName="name">
+    </div>
+    <div class="input-group form-group-no-border mg-20">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <mat-icon>email</mat-icon>
+            </span>
+        </div>
+        <input class="form-control" placeholder="Email" type="email" formControlName="email">
+    </div>
+    <div class="input-group form-group-no-border mg-20">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <mat-icon>phone</mat-icon>
+            </span>
+        </div>
+        <input class="form-control" placeholder="Mobile Number" type="number" formControlName="mobileNumber">
+    </div>
+    <div class="input-group form-group-no-border mg-20">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <mat-icon>vpn_key</mat-icon>
+            </span>
+        </div>
+        <input class="form-control" placeholder="Password" type="password" formControlName="password">
+    </div>
+    <button class="btn btn-block btn-round register-btn">Register</button>
+    <div class="login">
+        <p>Already have an account? <a style="color:#fbb710;" (click)="onLoginClick()">Login</a>.</p>
+    </div>
+</form>

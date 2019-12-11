@@ -6,9 +6,7 @@
   border-radius: 50px;
   box-shadow: 0 0px 6px #fbb710;
 }
-.form-control:focus{
-  box-shadow: none;
-}
+
 .divison{
   float: none;
   margin: 20px 0;
@@ -18,9 +16,30 @@
   width: 100%;
   color: #66615b;
 }
+
 .line{
   border-top: 1px solid rgba(0,0,0,.2);
   width: 100%;
   position: relative;
   top:14px;
+}
+
+.login{
+  margin-top: 20px;
+  text-align: center;
+}
+
+.form-control:focus{
+  box-shadow: none;
+}
+
+.register-btn{
+  background-color: #fbb710;
+  color: white;
+  border-color: #fbb710;
+  margin-top:30px;
+}
+
+.mg-20{
+  margin-top:20px;
 }
