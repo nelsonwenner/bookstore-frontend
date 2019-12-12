@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 /* Add import */
 import { MatDialogRef, MatDialog } from '@angular/material';
-import { LoginComponent } from '../../login/login.component';
 import { FormGroup, FormControl } from '@angular/forms';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-signup',

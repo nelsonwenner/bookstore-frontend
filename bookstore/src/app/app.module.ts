@@ -7,11 +7,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { AuthGuardService } from './guard/auth-guard.service';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { NgxSkltnModule, SkltnConfig } from 'ngx-skltn';
 
@@ -24,8 +19,15 @@ const skltnConfig: SkltnConfig = {
 
 import * as MATERIAL_MODULES from '@angular/material';
 
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/common/header/header.component';
-import { SignupComponent } from './components/common/signup/signup.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthGuardService } from './guard/auth-guard.service';
+import { SliderComponent } from './components/common/slider/slider.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -35,6 +37,8 @@ import { SignupComponent } from './components/common/signup/signup.component';
     SignupComponent,
     DashboardComponent,
     HeaderComponent,
+    SliderComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

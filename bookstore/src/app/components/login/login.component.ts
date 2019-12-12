@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 /* Add imports*/
-import { SignupComponent } from '../common/signup/signup.component';
 import { UsersService } from './../../services/users.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from "@angular/router";
+import { SignupComponent } from '../signup/signup.component';
 
 @Component({
   selector: 'app-login',
