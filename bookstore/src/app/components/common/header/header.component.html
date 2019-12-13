@@ -1,8 +1,5 @@
-<div class="header-box">
+<div class="header-box fixed-top">
   <div class="my_container">
-    <div class="mobile-view">
-        <mat-icon fontSet="material-icons-outlined">menu</mat-icon>
-    </div>
     <div class="logo">
       <a [routerLink]="['/home']" style="width: 100px;">
         <img src="https://i.pinimg.com/originals/2c/fc/93/2cfc93d7665f5d7728782700e50596e3.png" height="50px">
@@ -13,12 +10,20 @@
         <li class="contain" [routerLink]="['/home']" routerLinkActive="active"><span>HOME</span></li>
         <li class="contain" [routerLink]="['/books']" routerLinkActive="active"><span>BOOKS</span></li>
         <li class="contain" [routerLink]="['/contact']" routerLinkActive="active"><span>CONTACT</span></li>
+        <li>
+          <div id="example-search">
+            <input type="search" placeholder="Search">
+          </div>
+        </li>
       </ul>
     </div>
     <div class="menu">
       <ul class="list">
         <li class="contain" *ngIf="!user" (click)="openLoginDialog()">
+          <div style="display:flex; flex-direction: column; align-items: center">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvUSsKmg8eAXt7AMn4YNFMLROT_yLtb3kKjatqSL3FGTWkcxTC" height="25px" width="25px">
             <span>SIGN IN</span>
+          </div>
         </li>
       </ul>
     </div>

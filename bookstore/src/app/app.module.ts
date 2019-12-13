@@ -28,6 +28,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthGuardService } from './guard/auth-guard.service';
 import { SliderComponent } from './components/common/slider/slider.component';
 import { HomeComponent } from './components/home/home.component';
+import { FooterComponent } from './components/common/footer/footer.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { HomeComponent } from './components/home/home.component';
     HeaderComponent,
     SliderComponent,
     HomeComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

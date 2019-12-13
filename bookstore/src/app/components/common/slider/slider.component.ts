@@ -22,7 +22,7 @@ export class SliderComponent implements OnInit {
   }
 
 
-  images = [1, 2, 3, 4].map(() => `https://picsum.photos/1250/250?random&t=${Math.random()}`);
+  images = [1, 2, 3, 4].map(() => `https://picsum.photos/1060/250?random&t=${Math.random()}`);
 
   constructor() { }
 

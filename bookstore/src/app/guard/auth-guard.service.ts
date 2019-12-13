@@ -14,13 +14,13 @@ export class AuthGuardService implements CanActivate{
   canActivate() {
 
     const token = localStorage.getItem('token') || null;
-
+    
     if(token != null) {
       return true;
     }
 
     this.router.navigate(['/login']);
-    
+
     return false;
   }
 
