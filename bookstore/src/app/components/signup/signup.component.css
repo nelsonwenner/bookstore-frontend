@@ -1,3 +1,4 @@
+
 .social-img{
   height: 30px;
   width: 30px;
@@ -5,6 +6,10 @@
   margin-right:15px;
   border-radius: 50px;
   box-shadow: 0 0px 6px #fbb710;
+}
+
+.form-control:focus{
+  box-shadow: none;
 }
 
 .divison{
@@ -24,32 +29,47 @@
   top:14px;
 }
 
-.login{
-  margin-top: 20px;
+.input-group-text {
+  display: flex;
+  align-items: center;
+  padding: 0.375rem 0.75rem;
+  margin-bottom: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
   text-align: center;
+  white-space: nowrap;
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
 }
 
-.form-control:focus{
-  box-shadow: none;
-}
-
-.register-btn{
-  background-color: #fbb710;
-  color: white;
-  border-color: #fbb710;
-  margin-top:30px;
-}
-
-.mg-20{
-  margin-top:20px;
-}
 
 
 
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
+@font-face {
+  font-family: Poppins-Regular;
+  src: url('/assets/fonts/poppins/Poppins-Regular.ttf');
+}
 
+@font-face {
+  font-family: Poppins-Bold;
+  src: url('/assets/fonts/poppins/Poppins-Bold.ttf');
+}
+
+@font-face {
+  font-family: Poppins-Medium;
+  src: url('/assets/fonts/poppins/Poppins-Medium.ttf');
+}
+
+@font-face {
+  font-family: Montserrat-Bold;
+  src: url('/assets/fonts/montserrat/Montserrat-Bold.ttf');
+}
 
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
@@ -486,4 +506,3 @@ iframe {
     opacity: 1;
   }
 }
-

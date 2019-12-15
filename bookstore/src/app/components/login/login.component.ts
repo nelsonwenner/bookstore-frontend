@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 /* Add imports*/
 import { UsersService } from './../../services/users.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from "@angular/router";
 import { SignupComponent } from '../signup/signup.component';
 
@@ -15,53 +15,49 @@ import { SignupComponent } from '../signup/signup.component';
 
 export class LoginComponent implements OnInit {
 
-  loginForm = new FormGroup({
-      email: new FormControl(''),
-      password: new FormControl('')
-  });
-
-  private user:any = {}
+  registerForm: FormGroup;
+  submitted = false;
 
   constructor(public dialogRef: MatDialogRef<LoginComponent>,
-    public dialog: MatDialog,
-    private usersService: UsersService,
-    private router: Router) { }
+              private usersService: UsersService,
+              private formBuilder: FormBuilder,
+              public dialog: MatDialog,
+              private router: Router) { }
 
   ngOnInit() {
-    
-    this.user = {
-      username: '',
-      password: ''
-    };
+
+    this.registerForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
 
   }
 
-  private async signin(form: FormGroup) {
+  private async login() {
 
-    if(form.valid) {
+    this.submitted = true;
 
-      const response = await this.usersService.login(this.user).toPromise();
+    if (this.registerForm.invalid) { return; }
 
-      if(response['token']) {
+    const response = await this.usersService.login(this.registerForm.value).toPromise();
 
-        const data = {
-          token: response['token'],
-          user_id: response['user_id'],
-          username: response['username'],
-          email: response['email'],
-          is_staff: response['is_staff']
-        }
+    if (response['token']) {
 
-        localStorage.setItem('token', JSON.stringify(data));
-        this.router.navigate(['/dashboard']);
-        return;
+      const data = {
+        token: response['token'],
+        user_id: response['user_id'],
+        username: response['username'],
+        email: response['email'],
+        is_staff: response['is_staff']
       }
-
-    } else {
-
-      console.log("Formulario invalido");
+      
+      localStorage.setItem('token', JSON.stringify(data));
+      //this.router.navigate(['/dashboard']);
+      return;
     }
   }
+
+  get attribute() { return this.registerForm.controls; }
 
   onSignUpClick() {
     this.dialogRef.close();
@@ -74,5 +70,4 @@ export class LoginComponent implements OnInit {
       );
     }, 300);
   }
-
 }

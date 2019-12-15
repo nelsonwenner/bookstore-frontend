@@ -22,7 +22,6 @@ export class UsersService {
     let uri = `${environment.ApiRoot}/${ApiEndpoints.login}`;
 
     return this.http.post(uri, JSON.stringify(user), this.loadHeaders());
-
   }
 
   private loadHeaders(token: string = '') {
@@ -31,7 +30,7 @@ export class UsersService {
       'Content-Type': "application/json",
       "Authorization": `Bearer ${token}`
     });
-    
+
     return { headers };
   }
 
