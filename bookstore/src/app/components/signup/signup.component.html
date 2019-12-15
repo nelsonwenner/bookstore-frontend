@@ -1,0 +1,83 @@
+<h2 style="text-align: center; margin-bottom: 30px;">Register</h2>
+
+<form style="width: 320px;" class="register-form" [formGroup]="registerForm" (ngSubmit)="register()">
+    <div class="division" style="display:flex;">
+        <div class="line"></div>
+        <span style="margin: 0px 15px;">Client</span>
+        <div class="line"></div>
+    </div>
+
+    <!-- Input Name formControlName="name" -->
+    <div class="wrap-input100 validate-input">
+
+      <!-- Validate name -->
+      <div *ngIf="submitted && attribute.name.errors">
+        <div *ngIf="attribute.name.errors.required" class="alert-validate" data-validate="Valid name is required"></div>
+      </div>
+
+      <input class="input100" type="text" name="person" placeholder="Name" formControlName="name">
+      <span class="focus-input100"></span>
+      <span class="symbol-input100">
+        <i class="material-icons" aria-hidden="true">perm_identity</i>
+      </span>
+    </div>
+
+     <!-- Input Email formControlName="email" -->
+    <div class="wrap-input100 validate-input">
+
+      <!-- Validate email -->
+      <div *ngIf="submitted && attribute.email.errors">
+        <div *ngIf="attribute.email.errors.required" class="alert-validate" data-validate="Valid email is required: ex@abc.com"></div>
+        <div *ngIf="attribute.email.errors.email" class="alert-validate" data-validate="Email must be a valid email address"></div>
+      </div>
+
+      <input class="input100" type="text" name="email" placeholder="Email" formControlName="email">
+      <span class="focus-input100"></span>
+      <span class="symbol-input100">
+        <i class="material-icons" aria-hidden="true">email</i>
+      </span>
+    </div>
+
+    <!-- Input Phone formControlName="phone" -->
+    <div class="wrap-input100 validate-input">
+
+      <!-- Validate phone -->
+      <div *ngIf="submitted && attribute.phone.errors">
+        <div *ngIf="attribute.phone.errors.required" class="alert-validate" data-validate="Valid phone is required"></div>
+      </div>
+
+      <input class="input100" type="text" name="mobile_number" placeholder="Mobile Number" formControlName="phone">
+      <span class="focus-input100"></span>
+      <span class="symbol-input100">
+        <i class="material-icons" aria-hidden="true">phone</i>
+      </span>
+    </div>
+
+    <!-- Input Password  formControlName="password" -->
+    <div class="wrap-input100 validate-input">
+
+      <!-- Validate password -->
+      <div *ngIf="submitted && attribute.password.errors">
+        <div *ngIf="attribute.password.errors.required" class="alert-validate" data-validate="Password is required"></div>
+        <div *ngIf="attribute.password.errors.minlength" class="alert-validate" data-validate="Password must be at least 6 characters"></div>
+      </div>
+
+      <input class="input100" type="password" name="password" placeholder="Password" formControlName="password">
+      <span class="focus-input100"></span>
+      <span class="symbol-input100">
+        <i class="material-icons" aria-hidden="true">vpn_key</i>
+      </span>
+    </div>
+
+    <div class="container-login100-form-btn">
+      <button class="login100-form-btn" type="submit">Register</button>
+    </div>
+
+    <div class="login" style="margin-top: 10px; justify-content: space-between;">
+        <span>Already have an account?</span>
+        <a style="margin-top:20px;" (click)="onLoginClick()">
+        Login
+        <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+        </a>
+    </div>
+</form>
