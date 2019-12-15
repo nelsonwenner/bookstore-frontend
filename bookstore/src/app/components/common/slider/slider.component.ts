@@ -20,8 +20,8 @@ export class SliderComponent implements OnInit {
     autoHeight: true,
     autoHeightClass: 'owl-height',
   }
-  
-  images = [1, 2, 3, 4].map(() => `https://picsum.photos/1060/250?random&t=${Math.random()}`);
+
+  images = [1, 2, 3, 4].map(() => `https://picsum.photos/1135/250?random&t=${Math.random()}`);
 
   constructor() { }
 
