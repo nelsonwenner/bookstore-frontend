@@ -211,9 +211,11 @@ input[type=search]:focus {
 	color: transparent;
 	cursor: pointer;
 }
+
 #example-search input[type=search]:hover {
 	background-color: #fff;
 }
+
 #example-search input[type=search]:focus {
 	width: 130px;
 	padding-left: 32px;
@@ -221,9 +223,79 @@ input[type=search]:focus {
 	background-color: #fff;
 	cursor: auto;
 }
+
 #example-search input:-moz-placeholder {
 	color: transparent;
 }
+
 #example-search input::-webkit-input-placeholder {
 	color: transparent;
+}
+
+.profile-popover {
+  border-radius: 2px;
+  padding: 0px;
+  padding-top: 5px;
+  background-color: #fff;
+  border-color: rgb(246, 246, 246);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
+  width: 160px;
+}
+
+.profile-dropdown {
+    width: 100%;
+    padding: 0;
+}
+.profile-dropdown-item {
+    padding: 0px 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    color: black;
+    font-size: 15px;
+    cursor: pointer;
+    outline: none;
+    font-weight: 400;
+}
+
+li:hover{
+    background: rgb(246, 246, 246);
+}
+
+li:active{
+    outline: none;
+}
+
+.cart-card{
+  min-width: 360px !important;
+}
+
+.cart-card-header{
+    height: 60px;
+    border-bottom: 1px solid lightgray;
+}
+
+.cart-card-body{
+    max-height: 200px;
+    overflow: auto;
+}
+
+.cart-card-footer{
+    font-size: 14px !important;
+    font-weight: 500;
+}
+
+.popover {
+  display: flex;
+  width: auto;
+  z-index: 1;
+  border-radius: 2px;
+  padding: 0px;
+  padding-top: 5px;
+  background-color: #fff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(246, 246, 246);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
+  width: 300px;
 }

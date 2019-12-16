@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 /* Add imports*/
 import { AuthService } from '../../services/auth.service';
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<LoginComponent>,
               private authService: AuthService,
               private formBuilder: FormBuilder,
+              private location: Location,
               public dialog: MatDialog,
               private router: Router) { }
 
@@ -52,9 +54,8 @@ export class LoginComponent implements OnInit {
           };
 
           localStorage.setItem('currentUser', JSON.stringify(data));
-          this.dialogRef.close();
-          this.router.navigate(['/dashboard']);
-          return true;
+          this.onNoClick();
+          location.reload();
         }
       },
       error => console.log(error)
@@ -73,5 +74,9 @@ export class LoginComponent implements OnInit {
         res => console.log(res)
       );
     }, 300);
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

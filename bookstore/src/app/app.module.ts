@@ -28,6 +28,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuardService } from './guard/auth-guard.service';
+import { MdePopoverModule } from '@material-extended/mde';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -84,7 +85,8 @@ import { AppComponent } from './app.component';
     OwlModule,
     ReactiveFormsModule,
     NgImageSliderModule,
-    NgxSkltnModule.forRoot(skltnConfig)
+    NgxSkltnModule.forRoot(skltnConfig),
+    MdePopoverModule
   ],
   providers: [
 

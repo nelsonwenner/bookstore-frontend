@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
 
   books: [];
 
-  default = new Array(6);
+  default = new Array(12);
 
   constructor(private bookService: BookService,
               iconRegistry: MatIconRegistry,

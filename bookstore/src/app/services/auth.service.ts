@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { User } from '../models/user';
 
 const ApiEndpoints = {
   login: 'api-token',
@@ -16,6 +18,8 @@ const ApiEndpoints = {
 
 export class AuthService {
 
+  isloggedIn = new BehaviorSubject(this.loggedIn());
+
   constructor(private http: HttpClient, private router: Router) { }
 
   public login(user: any): any {
@@ -25,7 +29,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('currentUser');
-    this.router.navigate(['/login']);
+    this.router.navigate(['home']);
   }
 
   loggedIn(): boolean {
@@ -40,7 +44,7 @@ export class AuthService {
     }
   }
 
-  getCurrentUser(): any {
+  getCurrentUser(): User {
     return JSON.parse(localStorage.getItem('currentUser'));
   }
 }
