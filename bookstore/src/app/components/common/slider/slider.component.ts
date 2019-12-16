@@ -21,7 +21,17 @@ export class SliderComponent implements OnInit {
     autoHeightClass: 'owl-height',
   }
 
-  images = [1, 2, 3, 4].map(() => `https://picsum.photos/1135/250?random&t=${Math.random()}`);
+  banners = [
+
+    {'img': 'assets/images/banner/01.png'},
+    {'img': 'assets/images/banner/03.png'},
+    {'img': 'assets/images/banner/04.png'},
+    {'img': 'assets/images/banner/05.png'},
+    {'img': 'assets/images/banner/06.png'},
+    {'img': 'assets/images/banner/07.png'},
+    {'img': 'assets/images/banner/08.png'}
+
+  ];
 
   constructor() { }
 
