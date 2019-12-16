@@ -11,19 +11,13 @@ import { Router } from "@angular/router";
 
 export class DashboardComponent implements OnInit {
 
-  private token = JSON.parse(localStorage.getItem('token'));
+  private currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
   constructor(private router: Router) { }
 
   ngOnInit() {
 
-    console.log(this.token.username);
-    
-  }
+    console.log(this.currentUser.username);
 
-  private logout() {
-
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
   }
 }

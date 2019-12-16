@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 /* Add imports*/
-import { UsersService } from './../../services/users.service';
+import { AuthService } from '../../services/auth.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from "@angular/router";
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
 
   constructor(public dialogRef: MatDialogRef<LoginComponent>,
-              private usersService: UsersService,
+              private authService: AuthService,
               private formBuilder: FormBuilder,
               public dialog: MatDialog,
               private router: Router) { }
@@ -33,28 +33,32 @@ export class LoginComponent implements OnInit {
 
   }
 
-  private async login() {
+  login() {
 
     this.submitted = true;
 
     if (this.registerForm.invalid) { return; }
 
-    const response = await this.usersService.login(this.registerForm.value).toPromise();
+    this.authService.login(this.registerForm.value).subscribe(response => {
 
-    if (response['token']) {
+        if (response.token) {
 
-      const data = {
-        token: response['token'],
-        user_id: response['user_id'],
-        username: response['username'],
-        email: response['email'],
-        is_staff: response['is_staff']
-      }
-      
-      localStorage.setItem('token', JSON.stringify(data));
-      //this.router.navigate(['/dashboard']);
-      return;
-    }
+          const data = {
+            token: response.token,
+            user_id: response.user_id,
+            username: response.username,
+            email: response.email,
+            is_staff: response.is_staff
+          };
+
+          localStorage.setItem('currentUser', JSON.stringify(data));
+          this.dialogRef.close();
+          this.router.navigate(['/dashboard']);
+          return true;
+        }
+      },
+      error => console.log(error)
+    );
   }
 
   get attribute() { return this.registerForm.controls; }
@@ -62,7 +66,7 @@ export class LoginComponent implements OnInit {
   onSignUpClick() {
     this.dialogRef.close();
     setTimeout(() => {
-      const dialogRef = this.dialog.open(SignupComponent,{
+      const dialogRef = this.dialog.open(SignupComponent, {
         data: {}
       });
       dialogRef.afterClosed().subscribe(

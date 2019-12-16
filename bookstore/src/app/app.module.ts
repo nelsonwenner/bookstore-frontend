@@ -1,10 +1,11 @@
+import { TokenInterceptorService } from './services/token-interceptor.service';
 import {  BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OwlModule } from 'ngx-owl-carousel';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 /* Add imports */
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgImageSliderModule } from 'ng-image-slider';
@@ -20,15 +21,15 @@ const skltnConfig: SkltnConfig = {
 import * as MATERIAL_MODULES from '@angular/material';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SliderComponent } from './components/common/slider/slider.component';
 import { HeaderComponent } from './components/common/header/header.component';
+import { FooterComponent } from './components/common/footer/footer.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { AuthGuardService } from './guard/auth-guard.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { AuthGuardService } from './guard/auth-guard.service';
-import { SliderComponent } from './components/common/slider/slider.component';
-import { HomeComponent } from './components/home/home.component';
-import { FooterComponent } from './components/common/footer/footer.component';
 
 
 @NgModule({
@@ -85,7 +86,12 @@ import { FooterComponent } from './components/common/footer/footer.component';
     NgImageSliderModule,
     NgxSkltnModule.forRoot(skltnConfig)
   ],
-  providers: [AuthGuardService],
+  providers: [
+
+    AuthGuardService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
+
+  ],
   bootstrap: [AppComponent],
   entryComponents: [LoginComponent, SignupComponent]
 })

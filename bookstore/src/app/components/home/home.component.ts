@@ -19,15 +19,15 @@ export class HomeComponent implements OnInit {
     dots: false,
     center: true,
     navigation: false,
-    loop:true,
-    margin:10,
-    autoplay:true,
+    loop: true,
+    margin: 10,
+    autoplay: true,
     animateOut: 'fadeOut',
     autoHeight: true,
     autoHeightClass: 'owl-height',
-  }
+  };
 
-  books:[];
+  books: [];
 
   default = new Array(6);
 
@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
 
     this.bookService.getAllBooks().subscribe(response => {
 
-      if (!response.results.lenght) { this.books = response.results; }
+      if (!response.status) { this.books = response.results; }
 
     });
 
