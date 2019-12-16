@@ -1,10 +1,8 @@
-<owl-carousel
-[options]="carouselOptions"
-[items]="images"
+<owl-carousel [options]="carouselOptions"
 [carouselClasses]="['owl-theme', 'row', 'sliding']">
-<div class="item" *ngFor="let image of images; let i = index">
+<div class="item" *ngFor="let banner of banners; let i = index">
      <div class="thumbnail-image" >
-        <img [src]='images'/>
+        <img [src]='banner.img'/>
     </div>
   </div>
 </owl-carousel>
