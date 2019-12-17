@@ -257,6 +257,7 @@ input[type=search]:focus {
     cursor: pointer;
     outline: none;
     font-weight: 400;
+    font-weight: bold;
 }
 
 li:hover{
