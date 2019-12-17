@@ -9,9 +9,9 @@
     </div>
     <div class="menu">
       <ul class="list">
-        <li class="contain" [routerLink]="['/home']" routerLinkActive="active"><span>HOME</span></li>
-        <li class="contain" [routerLink]="['/books']" routerLinkActive="active"><span>BOOKS</span></li>
-        <li class="contain" [routerLink]="['/contact']" routerLinkActive="active"><span>CONTACT</span></li>
+        <li class="contain" [routerLink]="['/home']" routerLinkActive="active"><span>Home</span></li>
+        <li class="contain" [routerLink]="['/books']" routerLinkActive="active"><span>Books</span></li>
+        <li class="contain" [routerLink]="['/contact']" routerLinkActive="active"><span>Contact</span></li>
         <li>
           <div id="example-search">
             <input type="search" placeholder="Search">
@@ -26,7 +26,7 @@
         <li class="contain" *ngIf="!currentUser" (click)="openLoginDialog()">
           <div style="display:flex; flex-direction: column; align-items: center">
             <img [src]="'assets/images/icons/singin.png'" height="25px" width="25px">
-            <span>SIGN IN</span>
+            <span>Sign in</span>
           </div>
         </li>
 
@@ -35,7 +35,7 @@
           [mdePopoverOffsetX]="-50" [mdePopoverOffsetY]="60" mdePopoverTriggerOn="click">
           <div style="display:flex; flex-direction: column; align-items: center">
             <img [src]="'assets/images/icons/singin.png'" height="25px" width="25px">
-            <span> {{ currentUser.username | uppercase }} </span>
+            <span> {{ currentUser.username }} </span>
           </div>
         </li>
 
@@ -43,7 +43,7 @@
         <li class="contain">
             <div style="display:flex; flex-direction: column; position: relative;">
               <img [src]="'/assets/images/icons/car.png'" height="25px" width="25px">
-              <span>CART</span>
+              <span>Cart</span>
             </div>
         </li>
 

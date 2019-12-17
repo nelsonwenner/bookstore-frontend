@@ -1,5 +1,5 @@
 import { TokenInterceptorService } from './services/token-interceptor.service';
-import {  BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OwlModule } from 'ngx-owl-carousel';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -20,7 +20,6 @@ const skltnConfig: SkltnConfig = {
 
 import * as MATERIAL_MODULES from '@angular/material';
 
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SliderComponent } from './components/common/slider/slider.component';
 import { HeaderComponent } from './components/common/header/header.component';
 import { FooterComponent } from './components/common/footer/footer.component';
@@ -31,6 +30,7 @@ import { AuthGuardService } from './guard/auth-guard.service';
 import { MdePopoverModule } from '@material-extended/mde';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BooksComponent } from './components/books/books.component';
 
 
 @NgModule({
@@ -38,11 +38,11 @@ import { AppComponent } from './app.component';
     AppComponent,
     LoginComponent,
     SignupComponent,
-    DashboardComponent,
     HeaderComponent,
     SliderComponent,
     HomeComponent,
     FooterComponent,
+    BooksComponent,
   ],
   imports: [
     BrowserModule,
