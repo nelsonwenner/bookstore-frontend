@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
               sanitizer: DomSanitizer,
               private router: Router) {
 
-    this.bookService.getAllBooks().subscribe(response => {
+    this.bookService.getAllBooks(1).subscribe(response => {
 
       if (!response.status) { this.books = response.results; }
 
@@ -44,7 +44,6 @@ export class HomeComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

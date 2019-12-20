@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 /* Add imports */
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { BookService } from 'src/app/services/book.service';
 
 @Component({
@@ -13,6 +13,9 @@ import { BookService } from 'src/app/services/book.service';
 export class BooksComponent implements OnInit {
 
   applyFilter: boolean = false;
+  itemsPerPage: number = 12;
+  currentPage: number = 1;
+  totalPages: any = [];
 
   carouselOptions = {
     items: 1,
@@ -30,17 +33,39 @@ export class BooksComponent implements OnInit {
 
   default = new Array(12);
 
-  constructor(private bookService: BookService,
-              private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute,
+              private bookService: BookService) { }
 
-    this.bookService.getAllBooks().subscribe(response => {
+  ngOnInit() {
 
-      if (!response.status) { this.books = response.results; }
+    this.activatedRoute.queryParams.subscribe(query => this.loadPage(query.page || 1));
+  }
 
+  private loadPage(page) {
+
+    this.bookService.getAllBooks(page).subscribe(response => {
+
+      this.totalPages = this.countPages(response.count, 12);
+
+      this.currentPage = page;
+
+      if (!response.status) {
+        this.books = response.results;
+      }
     });
   }
 
-  ngOnInit() {}
+  private countPages(amountItems, itemsPerPage) {
+    const totalPages: any = [];
+
+    let amountPages = Math.round((amountItems + 1) / itemsPerPage);
+
+    if (Math.round((amountItems + 1)) % 12 !== 0) { amountPages++; }
+
+    for (let i = 1; i <= amountPages; i++) { totalPages.push(i); }
+
+    return totalPages;
+  }
 
   preserveFilterName:string;
   showFilter: boolean = false;
@@ -54,5 +79,4 @@ export class BooksComponent implements OnInit {
       this.preserveFilterName = selectedOption;
     }
   }
-
 }
