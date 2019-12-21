@@ -33,13 +33,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   books: [];
 
   default = new Array(12);
-  
+
   constructor(private bookService: BookService,
               iconRegistry: MatIconRegistry,
               sanitizer: DomSanitizer,
               private router: Router) {
 
-    this.bookService.getAllBooks(1).subscribe(response => {
+    this.subscriptionBooks = this.bookService.getAllBooks(1)
+    .subscribe(response => {
 
       if (!response.status) { this.books = response.results; }
 
