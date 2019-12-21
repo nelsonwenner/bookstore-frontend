@@ -32,7 +32,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BooksComponent } from './components/books/books.component';
 import { ErrorInterceptorService } from './services/error-interceptor.service';
-
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -51,6 +51,7 @@ import { ErrorInterceptorService } from './services/error-interceptor.service';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
 
     /* Material */
     MATERIAL_MODULES.MatAutocompleteModule,

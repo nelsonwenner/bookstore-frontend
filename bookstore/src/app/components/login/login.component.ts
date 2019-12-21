@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 /* Add imports*/
 import { AuthService } from '../../services/auth.service';
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(public dialogRef: MatDialogRef<LoginComponent>,
               private authService: AuthService,
               private formBuilder: FormBuilder,
+              private toastr: ToastrService,
               private location: Location,
               public dialog: MatDialog,
               private router: Router) { }
@@ -57,7 +59,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     if (this.registerForm.invalid) { return; }
 
-    this.subscriptionLogin = this.authService.login(this.registerForm.value).subscribe(response => {
+    this.subscriptionLogin = this.authService.login(this.registerForm.value)
+    .subscribe(response => {
 
         if (response.token) {
 
@@ -74,7 +77,9 @@ export class LoginComponent implements OnInit, OnDestroy {
           location.reload();
         }
       },
-      error => console.log(error)
+      error => {
+        return this.toastr.error('Invalid Credentials', 'Login');
+      }
     );
   }
 
@@ -82,6 +87,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   onSignUpClick() {
     this.dialogRef.close();
+
     setTimeout(() => {
       const dialogRef = this.dialog.open(SignupComponent, {
         data: {}
