@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 /* Add import */
 import { MatIconRegistry } from '@angular/material/icon';
@@ -12,7 +13,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+
+  subscriptionBooks: Subscription;
 
   carouselOptions = {
     items: 1,
@@ -30,7 +33,7 @@ export class HomeComponent implements OnInit {
   books: [];
 
   default = new Array(12);
-
+  
   constructor(private bookService: BookService,
               iconRegistry: MatIconRegistry,
               sanitizer: DomSanitizer,
@@ -46,4 +49,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() { }
 
+  ngOnDestroy() {
+
+    if (this.subscriptionBooks) {
+      this.subscriptionBooks.unsubscribe();
+    }
+
+  }
 }

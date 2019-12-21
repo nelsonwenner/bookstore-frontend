@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 /* Add imports*/
 import { AuthService } from '../../services/auth.service';
@@ -14,7 +15,10 @@ import { SignupComponent } from '../signup/signup.component';
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+
+  subscriptionLogin: Subscription;
+  subscriptiondialogRef: Subscription;
 
   registerForm: FormGroup;
   submitted = false;
@@ -35,13 +39,25 @@ export class LoginComponent implements OnInit {
 
   }
 
-  login() {
+  ngOnDestroy() {
+
+    if (this.subscriptionLogin) {
+      this.subscriptionLogin.unsubscribe();
+    }
+
+    if (this.subscriptiondialogRef) {
+      this.subscriptiondialogRef.unsubscribe();
+    }
+
+  }
+
+  login(): void {
 
     this.submitted = true;
 
     if (this.registerForm.invalid) { return; }
 
-    this.authService.login(this.registerForm.value).subscribe(response => {
+    this.subscriptionLogin = this.authService.login(this.registerForm.value).subscribe(response => {
 
         if (response.token) {
 
@@ -70,7 +86,8 @@ export class LoginComponent implements OnInit {
       const dialogRef = this.dialog.open(SignupComponent, {
         data: {}
       });
-      dialogRef.afterClosed().subscribe(
+
+      this.subscriptiondialogRef = dialogRef.afterClosed().subscribe(
         res => console.log(res)
       );
     }, 300);

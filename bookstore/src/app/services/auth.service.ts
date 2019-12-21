@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user';
 
 const ApiEndpoints = {
@@ -18,22 +18,27 @@ const ApiEndpoints = {
 
 export class AuthService {
 
-  isloggedIn = new BehaviorSubject(this.loggedIn());
+  private isloggedIn = new BehaviorSubject<boolean>(this.loggedIn());
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  public login(user: any): any {
+  public login(user: User): Observable<any> {
     const uri = `${environment.ApiRoot}/${ApiEndpoints.login}`;
-    return this.http.post(uri, user);
+    return this.http.post<any>(uri, user);
   }
 
   logout(): void {
     localStorage.removeItem('currentUser');
+    this.isloggedIn.next(false);
     this.router.navigate(['home']);
   }
 
   loggedIn(): boolean {
     return !!localStorage.getItem('currentUser');
+  }
+
+  getObserverIsLogged(): BehaviorSubject<boolean> {
+    return this.isloggedIn;
   }
 
   getToken(): string {

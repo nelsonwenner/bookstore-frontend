@@ -14,7 +14,7 @@ export class BookService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllBooks(page): Observable<any> {
+  getAllBooks(page: number): Observable<any> {
     return this.httpClient.get(`${environment.ApiRoot}/books/?page=${page}`);
   }
 

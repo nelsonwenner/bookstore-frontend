@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, OnDestroy } from '@angular/core';
 import { User } from './../../../models/user';
+import { Subscription } from 'rxjs';
 
 /* Add imports */
 import { MatDialog } from '@angular/material';
 import { LoginComponent } from '../../login/login.component';
 import { AuthService } from '../../../services/auth.service';
-import { LoadingService } from 'src/app/services/loading.service';
 import { MdePopoverTrigger } from '@material-extended/mde';
 
 @Component({
@@ -14,32 +14,43 @@ import { MdePopoverTrigger } from '@material-extended/mde';
   styleUrls: ['./header.component.css']
 })
 
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
-  loadingEnable: boolean;
-  private currentUser: User;
+  subscriptionIsLogged: Subscription;
+  subscriptiondialogRef: Subscription;
+  currentUser: User;
 
   @ViewChildren(MdePopoverTrigger) trigger: QueryList<MdePopoverTrigger>;
 
-  constructor(public loadingService: LoadingService,
-              private authService: AuthService,
+  constructor(private authService: AuthService,
               public dialog: MatDialog) { }
 
   ngOnInit() {
 
-    this.authService.isloggedIn.subscribe(next => {
-      this.currentUser = this.authService.getCurrentUser();
+    this.subscriptionIsLogged = this.authService.getObserverIsLogged().subscribe(isLogged => {
+      if (isLogged) {
+        this.currentUser = this.authService.getCurrentUser();
+      }
     });
+  }
 
-    this.loadingService.progressEnable.subscribe(next => {
-      this.loadingEnable = next;
-    });
+  ngOnDestroy() {
+
+    if (this.subscriptionIsLogged) {
+      this.subscriptionIsLogged.unsubscribe();
+    }
+
+    if (this.subscriptiondialogRef) {
+      this.subscriptiondialogRef.unsubscribe();
+    }
+
   }
 
   openLoginDialog(): void {
     const dialogRef = this.dialog.open(LoginComponent, {
     });
-    dialogRef.afterClosed().subscribe(result => {
+
+    this.subscriptiondialogRef = dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
   }

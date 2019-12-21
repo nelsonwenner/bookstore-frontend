@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 /* Add imports */
 import { ActivatedRoute } from '@angular/router';
 import { BookService } from 'src/app/services/book.service';
+import { Book } from 'src/app/models/book';
 
 @Component({
   selector: 'app-books',
@@ -10,7 +12,10 @@ import { BookService } from 'src/app/services/book.service';
   styleUrls: ['./books.component.css']
 })
 
-export class BooksComponent implements OnInit {
+export class BooksComponent implements OnInit, OnDestroy {
+
+  subscriptionActivatedRoute: Subscription;
+  subscriptionBooks: Subscription;
 
   applyFilter: boolean = false;
   itemsPerPage: number = 12;
@@ -29,7 +34,7 @@ export class BooksComponent implements OnInit {
     autoHeightClass: 'owl-height'
   };
 
-  books: [];
+  books: Book[];
 
   default = new Array(12);
 
@@ -38,12 +43,27 @@ export class BooksComponent implements OnInit {
 
   ngOnInit() {
 
-    this.activatedRoute.queryParams.subscribe(query => this.loadPage(query.page || 1));
+    this.subscriptionActivatedRoute = this.activatedRoute.queryParams
+    .subscribe(query => this.loadPage(query.page || 1));
+
   }
 
-  private loadPage(page) {
+  ngOnDestroy() {
 
-    this.bookService.getAllBooks(page).subscribe(response => {
+    if (this.subscriptionBooks) {
+      this.subscriptionBooks.unsubscribe();
+    }
+
+    if (this.subscriptionActivatedRoute) {
+      this.subscriptionActivatedRoute.unsubscribe();
+    }
+
+  }
+
+  private loadPage(page: number): void {
+
+    this.subscriptionBooks = this.bookService.getAllBooks(page)
+    .subscribe(response => {
 
       this.totalPages = this.countPages(response.count, 12);
 

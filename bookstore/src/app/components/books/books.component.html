@@ -18,7 +18,7 @@
           <li><span>Manga</span></li>
         </ul>
       </div>
-
+      
       <div *ngIf="preserveFilterName=='price'" class="filter-option fadeIn">
         <ul class="filter-list">
             <li><input type="checkbox"></li><span>0-999</span>
@@ -86,15 +86,15 @@
     <ul *ngIf="books" class="pagination-css">
 
       <li [ngClass]="{disabled: +currentPage === 1}" class="page-item previous-item">
-          <a [routerLink]="['/books']" [queryParams]="{ page: + currentPage - 1 }" class="page-link">Previous</a>
+        <a [routerLink]="['/books']" [queryParams]="{ page: + currentPage - 1 }" class="page-link">Previous</a>
       </li>
 
       <li *ngFor="let page of totalPages" [ngClass]="{active: +currentPage === +page}" class="page-item">
-          <a [routerLink]="['/books']" [queryParams]="{ page: page }" class="page-link">{{page}}</a>
+        <a [routerLink]="['/books']" [queryParams]="{ page: page }" class="page-link">{{page}}</a>
       </li>
 
       <li [ngClass]="{disabled: +currentPage === +totalPages.length}" class="page-item next-item">
-          <a [routerLink]="['/books']" [queryParams]="{ page: + currentPage + 1 }" class="page-link">Next</a>
+        <a [routerLink]="['/books']" [queryParams]="{ page: + currentPage + 1 }" class="page-link">Next</a>
       </li>
 
     </ul>

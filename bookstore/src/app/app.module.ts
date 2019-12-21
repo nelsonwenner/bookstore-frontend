@@ -31,6 +31,7 @@ import { MdePopoverModule } from '@material-extended/mde';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BooksComponent } from './components/books/books.component';
+import { ErrorInterceptorService } from './services/error-interceptor.service';
 
 
 @NgModule({
@@ -92,6 +93,7 @@ import { BooksComponent } from './components/books/books.component';
 
     AuthGuardService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true },
 
   ],
   bootstrap: [AppComponent],
