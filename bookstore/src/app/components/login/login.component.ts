@@ -4,11 +4,11 @@ import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 /* Add imports*/
-import { AuthService } from '../../services/auth.service';
-import { MatDialog, MatDialogRef } from '@angular/material';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Router } from "@angular/router";
 import { SignupComponent } from '../signup/signup.component';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { AuthService } from '../../services/auth.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-login',

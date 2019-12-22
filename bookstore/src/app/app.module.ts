@@ -33,6 +33,7 @@ import { AppComponent } from './app.component';
 import { BooksComponent } from './components/books/books.component';
 import { ErrorInterceptorService } from './services/error-interceptor.service';
 import { ToastrModule } from 'ngx-toastr';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ToastrModule } from 'ngx-toastr';
     HomeComponent,
     FooterComponent,
     BooksComponent,
+    PagenotfoundComponent,
   ],
   imports: [
     BrowserModule,
