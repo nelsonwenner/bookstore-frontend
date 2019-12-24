@@ -6,6 +6,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BookService } from '../../services/book.service';
 import { Router } from '@angular/router';
+import { Book } from 'src/app/models/book';
 
 @Component({
   selector: 'app-home',
@@ -30,7 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     autoHeightClass: 'owl-height',
   };
 
-  books: [];
+  books: Book[];
 
   default = new Array(12);
 

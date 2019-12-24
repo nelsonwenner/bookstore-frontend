@@ -1,0 +1,139 @@
+mat-card {
+  box-shadow: none !important;
+  width: 300px !important;
+}
+
+.conatiner {
+  background: #f8f9fa !important;
+  display: flex;
+  justify-content: center;
+  padding: 20px 2%;
+  font-weight: 400;
+  color: black;
+}
+
+.product-img-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #f0f0f0;
+}
+
+.product-description {
+  flex: 1;
+}
+
+.buy-now-button {
+  border-radius: 0;
+}
+.buy-now-button.space {
+  margin-right: 10px;
+}
+
+.rating {
+  margin-left: 10px;
+}
+.sold{
+  margin-left: 10px;
+}
+
+.description {
+  font-size: 14px;
+  color: gray;
+  animation: animate 1s linear forwards;
+}
+
+@keyframes animate {
+  0% {
+
+      filter: blur(1px);
+  }
+  100% {
+
+      filter: blur(0);
+  }
+}
+
+.description-tabs{
+  margin: 0px 2%;
+  min-height: 300px;
+  color: black;
+}
+.img-box{
+  flex: 1;
+  text-align: center;
+}
+.detail-box{
+flex: 12;
+}
+
+.products-container{
+  background: #f8f9fa !important;
+  padding: 1em 0;
+  position: relative;
+}
+
+.title {
+  border-left: 5px solid #3f51b5;
+  padding-left: 10px;
+  position: relative;
+  font-size: 30px;
+  font-weight: 600;
+  color: #000000;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.viewAllBtn{
+  float: right;
+  margin-top: 10px;
+  border-radius: 0;
+}
+.body{
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.body .productImg {
+  padding: 18px;
+  width: 100%;
+  height: 200px;
+}
+
+@media (max-width: 1080px) {
+  .conatiner {
+      display: block;
+      padding: 20px 5%;
+  }
+  .products-container {
+      display: none;
+  }
+  .description-tabs{
+      margin: 0px 2%;
+      margin-bottom: 10px;
+  }
+  .title {
+      border-left: 5px solid #3f51b5;
+      padding-left: 10px;
+      position: relative;
+      font-size: 20px;
+      font-weight: 600;
+      color: #000000;
+      margin-left: 0.5%;
+      width: 100%;
+      margin-bottom: 20px;
+  }
+}
+
+.ecom-modal-row .ecom-modal-stock {
+  color: green;
+}
+.ecom-modal-row .ecom-modal-stock i {
+  font-size: 15px !important;
+  padding-right:10px;
+}

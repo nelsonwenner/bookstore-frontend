@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 /* Add imports */
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from 'src/app/services/book.service';
 import { Book } from 'src/app/models/book';
 
@@ -39,7 +39,8 @@ export class BooksComponent implements OnInit, OnDestroy {
   default = new Array(12);
 
   constructor(private activatedRoute: ActivatedRoute,
-              private bookService: BookService) { }
+              private bookService: BookService,
+              private router: Router) { }
 
   ngOnInit() {
 
@@ -85,6 +86,10 @@ export class BooksComponent implements OnInit, OnDestroy {
     for (let i = 1; i <= amountPages; i++) { totalPages.push(i); }
 
     return totalPages;
+  }
+
+  getBook(id: number) {
+    this.router.navigate([`books/${id}`]);
   }
 
   preserveFilterName:string;

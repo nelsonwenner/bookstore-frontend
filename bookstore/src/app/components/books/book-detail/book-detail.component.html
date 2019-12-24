@@ -1,0 +1,48 @@
+<div class="conatiner" *ngIf="book" style="padding-top: 150px;">
+
+  <div class="product-img-container">
+    <mat-card>
+       <owl-carousel [options]="carouselOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']">
+        <img class="productImg" mat-card-image style="padding: 20px;" [src]="book.image">
+      </owl-carousel>
+    </mat-card>
+  </div>
+
+  <div class="product-description">
+    <div style="display:flex;align-items: center;justify-content: space-between;">
+      <p style="font-weight: 700; font-size: 24px; font-weight: bold;"> {{book.title}} </p>
+    </div>
+
+    <div class="ecom-modal-row">
+      <div class="ecom-modal-stock">
+        <span style="font-weight: bold;"><i class="material-icons">check_circle</i>En stock</span>
+      </div>
+    </div>
+
+    <div style="margin: 20px 0px;">
+      <span style="font-size: 20px;font-weight: bold;"> $ {{ book.prince }}
+      </span>
+    </div>
+
+    <button mat-button mat-stroked-button color="primary" class="button">
+      ADD TO CART
+    </button>
+
+  </div>
+</div>
+
+<div class="description-tabs" *ngIf="book">
+  <mat-tab-group>
+    <mat-tab label="Description">
+      <h2 style="font-weight: 400;"> {{ book.title }} </h2>
+
+      <div class="description">
+        On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have
+        been rewritten a thousand times and everything that was left from its origin would be the word "and" and
+        the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said
+        could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her
+        drunk with Longe and Parole and dragged her into their agency, where they abused her for their.
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
