@@ -1,3 +1,4 @@
+import { CartService } from 'src/app/core/services/cart.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
@@ -33,11 +34,12 @@ export class BooksComponent implements OnInit, OnDestroy {
     autoHeightClass: 'owl-height'
   };
 
-  books: Book[];
+  books: Array<Book>;;
 
   default = new Array(12);
 
   constructor(private activatedRoute: ActivatedRoute,
+              private cartService: CartService,
               private bookService: BookService,
               private router: Router) { }
 
@@ -79,6 +81,10 @@ export class BooksComponent implements OnInit, OnDestroy {
     for (let i = 1; i <= amountPages; i++) { totalPages.push(i); }
 
     return totalPages;
+  }
+
+  addToCart(book): void {
+    this.cartService.addToCart({book, quantity: 1});
   }
 
   getBook(id: number): void {

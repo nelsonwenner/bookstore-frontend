@@ -1,6 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Location } from '@angular/common';
-import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 /* Add imports*/
@@ -18,8 +16,7 @@ import { Router } from "@angular/router";
 
 export class LoginComponent implements OnInit, OnDestroy {
 
-  subscriptionLogin: Subscription;
-  subscriptiondialogRef: Subscription;
+  subscription = [];
 
   registerForm: FormGroup;
   submitted = false;
@@ -28,7 +25,6 @@ export class LoginComponent implements OnInit, OnDestroy {
               private authService: AuthService,
               private formBuilder: FormBuilder,
               private toastr: ToastrService,
-              private location: Location,
               public dialog: MatDialog,
               private router: Router) { }
 
@@ -43,13 +39,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
 
-    if (this.subscriptionLogin) {
-      this.subscriptionLogin.unsubscribe();
-    }
-
-    if (this.subscriptiondialogRef) {
-      this.subscriptiondialogRef.unsubscribe();
-    }
+    this.subscription.forEach(sub => sub.unsubscribe());
 
   }
 
@@ -59,7 +49,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     if (this.registerForm.invalid) { return; }
 
-    this.subscriptionLogin = this.authService.login(this.registerForm.value)
+    this.subscription.push(this.authService.login(this.registerForm.value)
     .subscribe(response => {
 
         if (response.token) {
@@ -80,7 +70,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       error => {
         return this.toastr.error('Invalid Credentials', 'Login');
       }
-    );
+    ));
   }
 
   get attribute() { return this.registerForm.controls; }
@@ -93,9 +83,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         data: {}
       });
 
-      this.subscriptiondialogRef = dialogRef.afterClosed().subscribe(
-        res => console.log(res)
-      );
+      this.subscription.push(dialogRef.afterClosed().
+      subscribe(res => console.log(res)
+      ));
     }, 300);
   }
 

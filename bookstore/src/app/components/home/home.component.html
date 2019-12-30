@@ -28,11 +28,15 @@
     </ng-container>
 
     <!-- Card books -->
-    <mat-card class="card-border" *ngFor="let item of books" (click) = "getBook(item.id)">
+    <mat-card class="card-border" *ngFor="let item of books">
       <owl-carousel [options]="carouselOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']">
         <div class="item">
-          <div class="thumbnail-image">
-            <img [src]="item.image" class="productImg" mat-card-image/>
+          <div class="image-container">
+            <img [src]="item.image" class="productImg product-image" mat-card-image/>
+            <div class="overlay">
+              <div class="button" (click)="getBook(item.id)">View Details</div>
+              <div class="button" (click)="addToCart(item)">Add To Cart</div>
+            </div>
           </div>
         </div>
       </owl-carousel>

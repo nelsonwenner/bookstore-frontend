@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { CartService } from 'src/app/core/services/cart.service';
 import { CartBaseComponent } from './cart-base.component';
 import { Component, OnInit, HostBinding, ElementRef } from '@angular/core';
@@ -13,7 +14,8 @@ export class CartPopupComponent extends CartBaseComponent {
   @HostBinding("class.visible") isVisible:boolean = false;
 
   constructor(protected cartService: CartService,
-              private eleref: ElementRef) {
+              private eleref: ElementRef,
+              private router: Router) {
 
     super(cartService);
   }
@@ -29,6 +31,14 @@ export class CartPopupComponent extends CartBaseComponent {
     if (this.isVisible && !this.eleref.nativeElement.contains(event.target) &&
         event.target.className !== 'cart-remove') {
       this.cartService.toggleCart();
+    }
+  }
+
+  emptyCart() {
+    console.log('oiii')
+    if (this.cartList.length) {
+
+      this.router.navigate(['/carts']);
     }
   }
 }

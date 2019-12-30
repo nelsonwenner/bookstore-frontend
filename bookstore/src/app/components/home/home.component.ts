@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     autoHeightClass: 'owl-height',
   };
 
-  books: Book[];
+  books: Array<Book>;
 
   default = new Array(12);
 
@@ -57,6 +57,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.subscription.forEach(sub => sub.unsubscribe());
 
+  }
+
+  addToCart(book): void {
+    this.cartService.addToCart({book, quantity: 1});
   }
 
   getBook(id: number): void {
