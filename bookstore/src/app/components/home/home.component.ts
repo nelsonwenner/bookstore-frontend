@@ -1,6 +1,5 @@
-
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
 
 /* Add import */
 import { MatIconRegistry } from '@angular/material/icon';
@@ -41,6 +40,7 @@ export class HomeComponent implements OnInit, OnDestroy {
               private bookService: BookService,
               private cartService: CartService,
               iconRegistry: MatIconRegistry,
+              private toastr: ToastrService,
               sanitizer: DomSanitizer,
               private router: Router) { }
 
@@ -61,6 +61,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   addToCart(book): void {
     this.cartService.addToCart({book, quantity: 1});
+
+    this.toastr.success('Product Added to the Cart', null, {
+      progressAnimation: 'decreasing',
+      positionClass: 'toast-bottom-right',
+      progressBar: true,
+      closeButton: true,
+      timeOut: 3000,
+    });
   }
 
   getBook(id: number): void {

@@ -2,7 +2,7 @@ import { BookService } from 'src/app/core/services/book.service';
 import { CartService } from 'src/app/core/services/cart.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription} from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -32,7 +32,8 @@ export class BookDetailComponent implements OnInit, OnDestroy  {
 
   constructor(private activatedRoute: ActivatedRoute,
               private bookService: BookService,
-              private cartService: CartService) {
+              private cartService: CartService,
+              private toastr: ToastrService) {
 
     this.subscription.push(this.bookService.
       getBook(this.activatedRoute.snapshot.params.id).
@@ -55,6 +56,13 @@ export class BookDetailComponent implements OnInit, OnDestroy  {
 
       this.cartService.addToCart({book, quantity: this.quantity});
 
+      this.toastr.success('Product Added to the Cart', null, {
+        progressAnimation: 'decreasing',
+        positionClass: 'toast-bottom-right',
+        progressBar: true,
+        closeButton: true,
+        timeOut: 3000,
+      });
     }
   }
 

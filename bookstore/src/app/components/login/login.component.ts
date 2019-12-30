@@ -68,7 +68,13 @@ export class LoginComponent implements OnInit, OnDestroy {
         }
       },
       error => {
-        return this.toastr.error('Invalid Credentials', 'Login');
+        return this.toastr.error('Invalid Credentials', 'Login', {
+          progressAnimation: 'decreasing',
+          positionClass: 'toast-bottom-right',
+          progressBar: true,
+          closeButton: true,
+          timeOut: 3000,
+        });
       }
     ));
   }

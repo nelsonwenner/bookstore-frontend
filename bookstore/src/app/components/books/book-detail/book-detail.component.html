@@ -5,14 +5,6 @@
        <owl-carousel [options]="carouselOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']">
         <img class="productImg" mat-card-image style="padding: 20px;" [src]="book.image">
       </owl-carousel>
-
-      <!--Add to cart-->
-      <div style="padding-top: 5px;">
-        <button class="btn btn-secondary btn-block" mat-button (click) = "addToCart(book)">
-          <mat-icon fontSet="material-icons-outlined" class="cart_animation">add_shopping_cart</mat-icon>
-        </button>
-      </div>
-      
     </mat-card>
   </div>
 
@@ -30,6 +22,11 @@
     <div style="margin: 20px 0px;">
       <span style="font-size: 20px;font-weight: bold;"> $ {{ book.prince }}
       </span>
+    </div>
+
+    <div class="product-details-button col-md-4">
+      <app-quantity-control [quantity]="quantity" (onChange)="changeQuantity($event)"></app-quantity-control>
+      <div class="button btn-lg" (click)="addToCart(book)">Add to cart</div>
     </div>
 
   </div>
