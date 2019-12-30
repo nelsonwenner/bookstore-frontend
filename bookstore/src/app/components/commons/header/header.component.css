@@ -300,3 +300,15 @@ li:active{
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
   width: 300px;
 }
+
+.ecom-cart-items-nb{
+  display:inline-block;
+  width:25px;
+  height:25px;
+  font-weight: 800;
+  color: #e40046;
+  border-radius:50%;
+  position: relative;
+  bottom: 30px;
+  right: 50px;
+}

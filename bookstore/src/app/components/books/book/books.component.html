@@ -56,10 +56,7 @@
     </ng-container>
 
     <!-- Card books -->
-    <mat-card class="example-card" *ngFor="let item of books" class="onLoad" (click) = "getBook(item.id)">
-      <div class="fab">
-        <mat-icon fontSet="material-icons-outlined">favorite_border</mat-icon>
-      </div>
+    <mat-card class="card-border onLoad" *ngFor="let item of books" (click) = "getBook(item.id)">
       <owl-carousel [options]="carouselOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']">
         <div class="item">
           <div class="thumbnail-image">
@@ -67,14 +64,14 @@
           </div>
         </div>
       </owl-carousel>
+
       <mat-card-content>
         <h3 style="margin: 0; font-weight: lighter; font-size: 15px;">{{ item.title }}</h3>
         <div style="display: flex; justify-content: space-between; align-items: center;">
-        <mat-icon fontSet="material-icons-outlined">attach_money</mat-icon>
-          <span style="font-weight: bold; font-size: 18px; margin-right: 160px; margin-top: 2px">
+          <mat-icon fontSet="material-icons-outlined" style="color: #57b846;">attach_money</mat-icon>
+          <span style="font-weight: bold; font-size: 18px; margin-right: 200px; margin-top: 2px">
           {{ item.prince }}
           </span>
-          <mat-icon fontSet="material-icons-outlined">shopping_cart</mat-icon>
         </div>
       </mat-card-content>
     </mat-card>

@@ -3,8 +3,8 @@ import { Subscription } from 'rxjs';
 
 /* Add imports */
 import { ActivatedRoute, Router } from '@angular/router';
-import { BookService } from 'src/app/services/book.service';
-import { Book } from 'src/app/models/book';
+import { BookService } from 'src/app/core/services/book.service';
+import { Book } from 'src/app/core/models/book';
 
 @Component({
   selector: 'app-books',
@@ -14,8 +14,7 @@ import { Book } from 'src/app/models/book';
 
 export class BooksComponent implements OnInit, OnDestroy {
 
-  subscriptionActivatedRoute: Subscription;
-  subscriptionBooks: Subscription;
+  subscription = [];
 
   applyFilter: boolean = false;
   itemsPerPage: number = 12;
@@ -44,27 +43,21 @@ export class BooksComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.subscriptionActivatedRoute = this.activatedRoute.queryParams
-    .subscribe(query => this.loadPage(query.page || 1));
+    this.subscription.push(this.activatedRoute.queryParams
+    .subscribe(query => this.loadPage(query.page || 1)));
 
   }
 
   ngOnDestroy() {
 
-    if (this.subscriptionBooks) {
-      this.subscriptionBooks.unsubscribe();
-    }
-
-    if (this.subscriptionActivatedRoute) {
-      this.subscriptionActivatedRoute.unsubscribe();
-    }
+   this.subscription.forEach(sub => sub.unsubscribe());
 
   }
 
   private loadPage(page: number): void {
 
-    this.subscriptionBooks = this.bookService.getAllBooks(page)
-    .subscribe(response => {
+    this.subscription.push(this.bookService.getAllBooks(page)
+      .subscribe(response => {
 
       this.totalPages = this.countPages(response.count, 12);
 
@@ -73,7 +66,7 @@ export class BooksComponent implements OnInit, OnDestroy {
       if (!response.status) {
         this.books = response.results;
       }
-    });
+    }));
   }
 
   private countPages(amountItems, itemsPerPage) {
@@ -88,20 +81,8 @@ export class BooksComponent implements OnInit, OnDestroy {
     return totalPages;
   }
 
-  getBook(id: number) {
+  getBook(id: number): void {
     this.router.navigate([`books/${id}`]);
   }
 
-  preserveFilterName:string;
-  showFilter: boolean = false;
-
-  showOption(selectedOption: string){
-    if (selectedOption === this.preserveFilterName) {
-      this.showFilter = false;
-      this.preserveFilterName = null;
-    } else {
-      this.showFilter = true;
-      this.preserveFilterName = selectedOption;
-    }
-  }
 }

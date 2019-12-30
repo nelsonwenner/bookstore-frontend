@@ -1,4 +1,4 @@
-import { TokenInterceptorService } from './services/token-interceptor.service';
+import { TokenInterceptorService } from './core/services/token-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OwlModule } from 'ngx-owl-carousel';
 import { BrowserModule } from '@angular/platform-browser';
@@ -20,20 +20,26 @@ const skltnConfig: SkltnConfig = {
 
 import * as MATERIAL_MODULES from '@angular/material';
 
-import { SliderComponent } from './components/common/slider/slider.component';
-import { HeaderComponent } from './components/common/header/header.component';
-import { FooterComponent } from './components/common/footer/footer.component';
+import { SliderComponent } from './components/commons/slider/slider.component';
+import { HeaderComponent } from './components/commons/header/header.component';
+import { FooterComponent } from './components/commons/footer/footer.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import { AuthGuardService } from './guard/auth-guard.service';
+import { AuthGuardService } from './core/guard/auth-guard.service';
 import { MdePopoverModule } from '@material-extended/mde';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BooksComponent } from './components/books/books.component';
-import { ErrorInterceptorService } from './services/error-interceptor.service';
+import { BooksComponent } from './components/books/book/books.component';
+import { ErrorInterceptorService } from './core/services/error-interceptor.service';
 import { ToastrModule } from 'ngx-toastr';
-import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { Page404 } from './components/page404/page404.component';
+import { BookDetailComponent } from './components/books/book-detail/book-detail.component';
+import { MarketingComponent } from './components/widgets/marketing/marketing.component';
+import { CartPopupComponent } from './components/carts/cart-popup/cart-popup.component';
+import { CartComponent } from './components/carts/cart/cart.component';
+import { QuantityControlComponent } from './components/carts/quantity-control/quantity-control.component';
+import { EmptyCartComponent } from './components/carts/empty-cart/empty-cart.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +51,13 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
     HomeComponent,
     FooterComponent,
     BooksComponent,
-    PagenotfoundComponent,
+    Page404,
+    BookDetailComponent,
+    MarketingComponent,
+    CartPopupComponent,
+    CartComponent,
+    QuantityControlComponent,
+    EmptyCartComponent
   ],
   imports: [
     BrowserModule,

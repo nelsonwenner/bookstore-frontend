@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 /* Add imports */
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user';
@@ -18,7 +18,7 @@ const ApiEndpoints = {
 
 export class AuthService {
 
-  private isloggedIn = new BehaviorSubject<boolean>(this.loggedIn());
+  isloggedIn = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient, private router: Router) { }
 

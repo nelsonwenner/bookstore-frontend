@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { SignupComponent } from '../signup/signup.component';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../core/services/auth.service';
 import { Router } from "@angular/router";
 
 @Component({
@@ -73,8 +73,8 @@ export class LoginComponent implements OnInit, OnDestroy {
           };
 
           localStorage.setItem('currentUser', JSON.stringify(data));
+          this.authService.isloggedIn.next(true);
           this.onNoClick();
-          location.reload();
         }
       },
       error => {

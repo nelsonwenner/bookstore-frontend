@@ -1,7 +1,8 @@
+import { Book } from 'src/app/core/models/book';
 import { Injectable } from '@angular/core';
 
 /* Add import */
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -16,6 +17,10 @@ export class BookService {
 
   getAllBooks(page: number): Observable<any> {
     return this.httpClient.get(`${environment.ApiRoot}/books/?page=${page}`);
+  }
+
+  getBook(id: number): Observable<any> {
+    return this.httpClient.get(`${environment.ApiRoot}/books/${id}/`);
   }
 
 }

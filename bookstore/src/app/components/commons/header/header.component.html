@@ -21,7 +21,12 @@
     </div>
     <div class="menu">
       <ul class="list">
-
+        <!--
+        <li class="" >
+          <mat-icon fontSet="material-icons" style="font-size: 30px; color: #555">shopping_cart</mat-icon>
+          <div class="ecom-cart-items-nb">{{catLength}}</div>
+        </li>
+        -->
         <!-- Link Sign In -->
         <li class="contain" *ngIf="!currentUser" (click)="openLoginDialog()">
           <div style="display:flex; flex-direction: column; align-items: center">
@@ -40,17 +45,20 @@
         </li>
 
         <!-- cart -->
-        <li class="contain">
-            <div style="display:flex; flex-direction: column; position: relative;">
-              <img [src]="'/assets/images/icons/car.png'" height="25px" width="25px">
-              <span>Cart</span>
-            </div>
+        <li class="contain" (click)="toggleCartPopup($event)">
+          <div style="display:flex; flex-direction: column; position: relative;">
+            <img [src]="'/assets/images/icons/car.png'" height="25px" width="25px">
+            <span>Cart</span>
+          </div>
         </li>
-
+        <span class="ecom-cart-items-nb">{{ cartCountItem }}</span>
       </ul>
     </div>
   </div>
+
+  <app-cart-popup></app-cart-popup>
 </div>
+
 
 <!-- Card settings client -->
 <mde-popover #profilePopover="mdePopover" [mdePopoverCloseOnClick]="true">
@@ -83,3 +91,4 @@
     </ul>
   </div>
 </mde-popover>
+

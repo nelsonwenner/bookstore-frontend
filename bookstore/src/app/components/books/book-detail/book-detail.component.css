@@ -137,3 +137,43 @@ flex: 12;
   font-size: 15px !important;
   padding-right:10px;
 }
+
+.btn {
+  position: relative;
+  height: 35px;
+  width: 150px;
+  border-radius: 10px !important;
+}
+
+.btn-secondary {
+  color: #fff;
+  background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #57b846;
+}
+
+.btn-delete {
+  color: #fff;
+  background-color: #e40046;
+}
+
+.btn-delete:hover {
+  color: #fff;
+  background-color: #f53d74;
+}
+
+.btn-block {
+  display: block !important;;
+  width: 100% ;
+}
+
+.cart_animation {
+  color: #fff;
+}
+
+.heart_animation:hover {
+  color: #e40046;
+}

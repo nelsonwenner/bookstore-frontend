@@ -1,12 +1,14 @@
+
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 /* Add import */
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { BookService } from '../../services/book.service';
-import { Router } from '@angular/router';
-import { Book } from 'src/app/models/book';
+import { BookService } from '../../core/services/book.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Book } from 'src/app/core/models/book';
+import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +18,7 @@ import { Book } from 'src/app/models/book';
 
 export class HomeComponent implements OnInit, OnDestroy {
 
-  subscriptionBooks: Subscription;
+  subscription = [];
 
   carouselOptions = {
     items: 1,
@@ -35,27 +37,29 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   default = new Array(12);
 
-  constructor(private bookService: BookService,
+  constructor(private activatedRoute: ActivatedRoute,
+              private bookService: BookService,
+              private cartService: CartService,
               iconRegistry: MatIconRegistry,
               sanitizer: DomSanitizer,
-              private router: Router) {
+              private router: Router) { }
 
-    this.subscriptionBooks = this.bookService.getAllBooks(1)
-    .subscribe(response => {
+  ngOnInit() {
 
+    this.subscription.push(this.bookService.getAllBooks(1)
+      .subscribe(response => {
       if (!response.status) { this.books = response.results; }
-
-    });
+    }));
 
   }
 
-  ngOnInit() { }
-
   ngOnDestroy() {
 
-    if (this.subscriptionBooks) {
-      this.subscriptionBooks.unsubscribe();
-    }
+    this.subscription.forEach(sub => sub.unsubscribe());
 
+  }
+
+  getBook(id: number): void {
+    this.router.navigate([`books/${id}`]);
   }
 }
