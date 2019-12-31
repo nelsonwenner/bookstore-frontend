@@ -17,9 +17,9 @@ import { CartService } from 'src/app/core/services/cart.service';
 
 export class HomeComponent implements OnInit, OnDestroy {
 
-  subscription = [];
+  private subscription = [];
 
-  carouselOptions = {
+  private carouselOptions = {
     items: 1,
     dots: false,
     center: true,
@@ -32,9 +32,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     autoHeightClass: 'owl-height',
   };
 
-  books: Array<Book>;
+  private books: Array<Book>;
 
-  default = new Array(12);
+  private default = new Array(12);
 
   constructor(private activatedRoute: ActivatedRoute,
               private bookService: BookService,
@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   }
 
-  addToCart(book): void {
+  private addToCart(book): void {
     this.cartService.addToCart({book, quantity: 1});
 
     this.toastr.success('Product Added to the Cart', null, {
@@ -71,7 +71,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  getBook(id: number): void {
+  private getBook(id: number): void {
     this.router.navigate([`books/${id}`]);
   }
 }

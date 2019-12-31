@@ -2,6 +2,7 @@ import { CartService } from 'src/app/core/services/cart.service';
 import { Cart } from './../../../core/models/cart';
 
 export class CartBaseComponent {
+
   public cartList: Cart[];
   public totalPrice: number;
 
@@ -9,8 +10,8 @@ export class CartBaseComponent {
     this.loadCart();
   }
 
-  loadCart(): void {
-    this.cartService.cartListSubject
+  private loadCart(): void {
+    this.cartService.getCartListSubject()
       .subscribe(res => {
         this.cartList = res;
         let total = 0;
@@ -21,7 +22,7 @@ export class CartBaseComponent {
       });
   }
 
-  removeFromCart(index): void {
+  private removeFromCart(index): void {
     this.cartService.removeCart(index);
   }
 }

@@ -15,14 +15,14 @@ import { Book } from 'src/app/core/models/book';
 
 export class BooksComponent implements OnInit, OnDestroy {
 
-  subscription = [];
+  private subscription = [];
 
-  applyFilter: boolean = false;
-  itemsPerPage: number = 12;
-  currentPage: number = 1;
-  totalPages: any = [];
+  private applyFilter: boolean = false;
+  private itemsPerPage: number = 12;
+  private currentPage: number = 1;
+  private totalPages: any = [];
 
-  carouselOptions = {
+  private carouselOptions = {
     items: 1,
     dots: false,
     navigation: false,
@@ -34,9 +34,9 @@ export class BooksComponent implements OnInit, OnDestroy {
     autoHeightClass: 'owl-height'
   };
 
-  books: Array<Book>;;
+  private books: Array<Book>;
 
-  default = new Array(12);
+  private default = new Array(12);
 
   constructor(private activatedRoute: ActivatedRoute,
               private cartService: CartService,
@@ -84,7 +84,7 @@ export class BooksComponent implements OnInit, OnDestroy {
     return totalPages;
   }
 
-  addToCart(book): void {
+  private addToCart(book): void {
     this.cartService.addToCart({book, quantity: 1});
 
     this.toastr.success('Product Added to the Cart', null, {
@@ -96,7 +96,7 @@ export class BooksComponent implements OnInit, OnDestroy {
     });
   }
 
-  getBook(id: number): void {
+  private getBook(id: number): void {
     this.router.navigate([`books/${id}`]);
   }
 

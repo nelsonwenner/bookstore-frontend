@@ -52,19 +52,18 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscription.push(this.authService.login(this.registerForm.value)
     .subscribe(response => {
 
-        if (response.token) {
+        if (response.token && !response.is_staff) {
 
-          const data = {
-            token: response.token,
-            user_id: response.user_id,
-            username: response.username,
-            email: response.email,
-            is_staff: response.is_staff
-          };
+          localStorage.setItem('currentUser', JSON.stringify(response));
+          const id = JSON.parse(localStorage.getItem('currentUser')).id;
 
-          localStorage.setItem('currentUser', JSON.stringify(data));
-          this.authService.isloggedIn.next(true);
-          this.onNoClick();
+          this.subscription.push(this.authService.getDataClient(id)
+          .subscribe(client => {
+
+            localStorage.setItem('currentUser', JSON.stringify(client));
+            this.authService.getObserverIsLoggedIn().next(true);
+            this.onNoClick();
+          }));
         }
       },
       error => {
@@ -79,9 +78,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     ));
   }
 
-  get attribute() { return this.registerForm.controls; }
+  private get attribute() { return this.registerForm.controls; }
 
-  onSignUpClick() {
+  private onSignUpClick(): void {
     this.dialogRef.close();
 
     setTimeout(() => {
@@ -95,7 +94,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     }, 300);
   }
 
-  onNoClick(): void {
+  private onNoClick(): void {
     this.dialogRef.close();
   }
 }

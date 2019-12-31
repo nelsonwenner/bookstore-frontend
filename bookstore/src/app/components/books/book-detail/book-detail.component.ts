@@ -13,11 +13,11 @@ import { ToastrService } from 'ngx-toastr';
 
 export class BookDetailComponent implements OnInit, OnDestroy  {
 
-  subscription = [];
-  quantity: number = 1;
-  book: any;
+  private subscription = [];
+  private quantity: number = 1;
+  private book: any;
 
-  carouselOptions = {
+  private carouselOptions = {
     items: 1,
     dots: false,
     center: true,
@@ -51,7 +51,7 @@ export class BookDetailComponent implements OnInit, OnDestroy  {
 
   }
 
-  addToCart(book): void {
+  private addToCart(book): void {
     if (this.quantity) {
 
       this.cartService.addToCart({book, quantity: this.quantity});
@@ -66,7 +66,7 @@ export class BookDetailComponent implements OnInit, OnDestroy  {
     }
   }
 
-  changeQuantity(newQuantity: number): void {
+  private changeQuantity(newQuantity: number): void {
     this.quantity = newQuantity;
   }
 

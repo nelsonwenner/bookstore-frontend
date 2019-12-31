@@ -22,12 +22,12 @@ export class CartPopupComponent extends CartBaseComponent {
 
   ngOnInit() {
 
-    this.cartService.toggleCartSubject.subscribe(res => {
+    this.cartService.getToggleCartSubject().subscribe(res => {
         this.isVisible = res;
     });
   }
 
-  onPageClick(event) {
+  private onPageClick(event): void {
     if (this.isVisible && !this.eleref.nativeElement.contains(event.target) &&
         event.target.className !== 'cart-remove') {
       this.cartService.toggleCart();

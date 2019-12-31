@@ -40,6 +40,7 @@ import { CartPopupComponent } from './components/carts/cart-popup/cart-popup.com
 import { CartComponent } from './components/carts/cart/cart.component';
 import { QuantityControlComponent } from './components/carts/quantity-control/quantity-control.component';
 import { EmptyCartComponent } from './components/carts/empty-cart/empty-cart.component';
+import { CheckoutComponent } from './components/checkouts/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { EmptyCartComponent } from './components/carts/empty-cart/empty-cart.com
     CartPopupComponent,
     CartComponent,
     QuantityControlComponent,
-    EmptyCartComponent
+    EmptyCartComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

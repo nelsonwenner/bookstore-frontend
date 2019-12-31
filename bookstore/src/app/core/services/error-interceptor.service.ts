@@ -18,7 +18,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
 
         if (err.status === 401) {
             this.authService.logout();
-            location.reload();
+            //location.reload();
         }
 
         if (err.status === 404) {

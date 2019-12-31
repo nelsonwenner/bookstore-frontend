@@ -9,16 +9,24 @@ import { Cart } from '../models/cart';
 
 export class CartService {
 
-  public cartListSubject = new BehaviorSubject([]);
-  public toggleCartSubject = new BehaviorSubject(false);
+  private cartListSubject = new BehaviorSubject([]);
+  private toggleCartSubject = new BehaviorSubject(false);
 
   constructor() { }
 
-  toggleCart() {
+  public toggleCart(): void {
     this.toggleCartSubject.next(!this.toggleCartSubject.getValue());
   }
 
-  addToCart(cart: Cart): void {
+  public getCartListSubject() {
+    return this.cartListSubject;
+  }
+
+  public getToggleCartSubject() {
+    return this.toggleCartSubject;
+  }
+
+  public addToCart(cart: Cart): void {
     let current = this.cartListSubject.getValue();
     let currentCart = current.find(c => c.book.title === cart.book.title);
     if (currentCart) { currentCart.quantity += cart.quantity; }
@@ -26,11 +34,11 @@ export class CartService {
     this.cartListSubject.next(current);
   }
 
-  reloadCart(cartList): void {
+  public reloadCart(cartList): void {
     this.cartListSubject.next(cartList);
   }
 
-  removeCart(index): void {
+  public removeCart(index): void {
     let current = this.cartListSubject.getValue();
     current.splice(index, 1);
     this.cartListSubject.next(current);

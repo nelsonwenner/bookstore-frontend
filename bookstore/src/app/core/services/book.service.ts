@@ -15,12 +15,12 @@ export class BookService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllBooks(page: number): Observable<any> {
+  public getAllBooks(page: number): Observable<any> {
     return this.httpClient.get(`${environment.ApiRoot}/books/?page=${page}`);
   }
 
-  getBook(id: number): Observable<any> {
-    return this.httpClient.get(`${environment.ApiRoot}/books/${id}/`);
+  public getBook(id: number): Observable<Book> {
+    return this.httpClient.get<Book>(`${environment.ApiRoot}/books/${id}/`);
   }
 
 }

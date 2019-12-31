@@ -1,7 +1,7 @@
 <div class="shopping-cart-conatiner" style="padding-top: 125px;">
 
   <div class="title">My Cart</div>
-  
+
   <div *ngIf="cartList.length > 0; else emptyCart">
     <div class="header">
 
@@ -61,7 +61,7 @@
           <td><b>${{ totalPrice }}</b></td>
         </tr>
       </table>
-      <div class="checkout-button">
+      <div class="checkout-button" (click)="checkout()">
         <button mat-stroked-button color="primary" class="button full-button">PROCEED TO CHECKOUT</button>
       </div>
     </div>

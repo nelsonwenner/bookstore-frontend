@@ -13,8 +13,8 @@ import { LoginComponent } from '../login/login.component';
 
 export class SignupComponent implements OnInit {
 
-  registerForm: FormGroup;
-  submitted = false;
+  private registerForm: FormGroup;
+  private submitted = false;
 
   constructor(public dialogRef: MatDialogRef<SignupComponent>,
               private formBuilder: FormBuilder,
@@ -41,9 +41,9 @@ export class SignupComponent implements OnInit {
 
   }
 
-  get attribute() { return this.registerForm.controls; }
+  private get attribute() { return this.registerForm.controls; }
 
-  onLoginClick(){
+  private onLoginClick() {
     this.dialogRef.close();
     setTimeout(() => {
       const dialogRef = this.dialog.open(LoginComponent, {

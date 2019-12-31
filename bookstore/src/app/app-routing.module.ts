@@ -1,3 +1,4 @@
+import { CheckoutComponent } from './components/checkouts/checkout/checkout.component';
 import { CartComponent } from './components/carts/cart/cart.component';
 import { BooksComponent } from './components/books/book/books.component';
 import { LoginComponent } from './components/login/login.component';
@@ -11,8 +12,6 @@ import { BookDetailComponent } from './components/books/book-detail/book-detail.
 
 const routes: Routes = [
 
-  { path: 'login', component: LoginComponent },
-
   { path: 'home', component: HomeComponent },
 
   { path: 'books', component: BooksComponent },
@@ -20,6 +19,13 @@ const routes: Routes = [
   { path: 'books/:id', component: BookDetailComponent },
 
   { path: 'carts', component: CartComponent },
+
+  { path: 'carts/checkouts',
+  component: CheckoutComponent,
+  canActivate: [AuthGuardService],
+  children: [
+
+  ]},
 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '*', redirectTo: 'home', pathMatch: 'full' },
