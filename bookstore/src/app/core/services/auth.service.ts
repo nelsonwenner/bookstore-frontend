@@ -1,3 +1,4 @@
+import { Register } from './../models/register';
 import { Injectable } from '@angular/core';
 
 /* Add imports */
@@ -33,6 +34,11 @@ export class AuthService {
     localStorage.removeItem('currentUser');
     this.isloggedIn.next(false);
     this.router.navigate(['home']);
+  }
+
+  public register(data: Register): Observable<Register> {
+    const uri = `${environment.ApiRoot}/${ApiEndpoints.client}/`;
+    return this.http.post<Register>(uri, data);
   }
 
   public loggedIn(): boolean {

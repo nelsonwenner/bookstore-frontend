@@ -16,10 +16,10 @@ import { Router } from "@angular/router";
 
 export class LoginComponent implements OnInit, OnDestroy {
 
-  subscription = [];
+  private subscription = [];
 
-  registerForm: FormGroup;
-  submitted = false;
+  private registerForm: FormGroup;
+  private submitted = false;
 
   constructor(public dialogRef: MatDialogRef<LoginComponent>,
               private authService: AuthService,
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   }
 
-  login(): void {
+  private login(): void {
 
     this.submitted = true;
 
@@ -52,30 +52,28 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscription.push(this.authService.login(this.registerForm.value)
     .subscribe(response => {
 
-        if (response.token && !response.is_staff) {
+      if (response.token && !response.is_staff) {
 
-          localStorage.setItem('currentUser', JSON.stringify(response));
-          const id = JSON.parse(localStorage.getItem('currentUser')).id;
+        localStorage.setItem('currentUser', JSON.stringify(response));
 
-          this.subscription.push(this.authService.getDataClient(id)
-          .subscribe(client => {
+        this.subscription.push(this.authService.getDataClient(response.id)
+        .subscribe(client => {
 
-            localStorage.setItem('currentUser', JSON.stringify(client));
-            this.authService.getObserverIsLoggedIn().next(true);
-            this.onNoClick();
-          }));
-        }
-      },
-      error => {
-        return this.toastr.error('Invalid Credentials', 'Login', {
-          progressAnimation: 'decreasing',
-          positionClass: 'toast-bottom-right',
-          progressBar: true,
-          closeButton: true,
-          timeOut: 3000,
-        });
+          localStorage.setItem('currentUser', JSON.stringify(client));
+          this.authService.getObserverIsLoggedIn().next(true);
+          this.onNoClick();
+        }));
       }
-    ));
+    },
+    error => {
+      return this.toastr.error('Invalid Credentials', 'Login', {
+        progressAnimation: 'decreasing',
+        positionClass: 'toast-bottom-right',
+        progressBar: true,
+        closeButton: true,
+        timeOut: 3000,
+      });
+    }));
   }
 
   private get attribute() { return this.registerForm.controls; }

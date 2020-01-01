@@ -15,14 +15,14 @@ export class QuantityControlComponent implements OnInit {
 
   ngOnInit() { }
 
-  plusOne() {
+  private plusOne() {
     if (this.quantity < 30) {
       this.quantity++;
       this.onChange.emit(this.quantity);
     }
   }
 
-  minusOne() {
+  private minusOne() {
     if (this.quantity > 1) {
       this.quantity--;
       this.onChange.emit(this.quantity);
