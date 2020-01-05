@@ -1,0 +1,96 @@
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.col-lg-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.col-md-3 .col-sm-3 .col-xs-3{
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.ecom-marketing-container {
+	 display: -ms-flexbox;
+	 display: -webkit-flex;
+	 display: flex;
+	 -ms-flex-align: center;
+	 -webkit-align-items: center;
+	 -webkit-box-align: center;
+	 align-items: center;
+}
+ .ecom-marketing-container .row {
+	 width: 100%;
+}
+ .ecom-marketing-container .row .col-lg-3 .ecom-marketing-item-prop {
+	 width: 100%;
+	 text-align: center;
+}
+ .ecom-marketing-container .row .col-lg-3 .ecom-marketing-item-prop i {
+	 font-size: 4em;
+}
+ .ecom-marketing-container .row .col-lg-3 .ecom-marketing-item-number {
+	 font-size: 1.5em;
+	 font-weight: 600;
+}
+ .ecom-marketing-container .row .col-lg-3 .ecom-marketing-item-txt {
+	 font-size: 1.3em;
+	 font-weight: 200;
+}
+/************ Responsive ************/
+ @media (max-width: 767px) {
+	 .ecom-marketing-container {
+		 height: auto;
+	}
+}
+ @media (min-width: 768px) and (max-width: 991px) {
+	 .ecom-marketing-container {
+		 height: auto;
+	}
+}
+ @media (min-width: 992px) {
+	 .ecom-marketing-container {
+		 height: 180px;
+	}
+}
+
+/************ Container ************/
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}

@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 /* Add import */
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { BookService } from '../../services/book.service';
-import { Router } from '@angular/router';
+import { BookService } from '../../core/services/book.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Book } from 'src/app/core/models/book';
+import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -12,39 +15,63 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
-  carouselOptions = {
+  private subscription = [];
+
+  private carouselOptions = {
     items: 1,
     dots: false,
     center: true,
     navigation: false,
-    loop:true,
-    margin:10,
-    autoplay:true,
+    loop: true,
+    margin: 10,
+    autoplay: true,
     animateOut: 'fadeOut',
     autoHeight: true,
     autoHeightClass: 'owl-height',
-  }
+  };
 
-  books:[];
+  private books: Array<Book>;
 
-  default = new Array(6);
+  private default = new Array(12);
 
-  constructor(private bookService: BookService,
+  constructor(private activatedRoute: ActivatedRoute,
+              private bookService: BookService,
+              private cartService: CartService,
               iconRegistry: MatIconRegistry,
+              private toastr: ToastrService,
               sanitizer: DomSanitizer,
-              private router: Router) {
-
-    this.bookService.getAllBooks().subscribe(response => {
-
-      if (!response.results.lenght) { this.books = response.results; }
-
-    });
-
-  }
+              private router: Router) { }
 
   ngOnInit() {
+
+    this.subscription.push(this.bookService.getAllBooks(1)
+      .subscribe(response => {
+      if (!response.status) { this.books = response.results; }
+    }));
+
   }
 
+  ngOnDestroy() {
+
+    this.subscription.forEach(sub => sub.unsubscribe());
+
+  }
+
+  private addToCart(book): void {
+    this.cartService.addToCart({book, quantity: 1});
+
+    this.toastr.success('Product Added to the Cart', null, {
+      progressAnimation: 'decreasing',
+      positionClass: 'toast-bottom-right',
+      progressBar: true,
+      closeButton: true,
+      timeOut: 3000,
+    });
+  }
+
+  private getBook(id: number): void {
+    this.router.navigate([`books/${id}`]);
+  }
 }

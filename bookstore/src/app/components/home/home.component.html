@@ -3,15 +3,13 @@
 <div class="products-container">
 
   <!-- Button all books -->
-  <div class="title">
-      Books
-      <button mat-button mat-raised-button color="primary" class="viewAllBtn">
-          View All
-      </button>
+  <div class="title" style="font-weight: lighter; border-left: 5px solid green; font-weight: bold;">
+    Books
+    <button style="font-weight: bold;" mat-button mat-raised-button class="viewAllBtn apply-btn" [routerLink]="['/books']">View All</button>
   </div>
 
   <div class="body">
-    
+
     <!-- Card default -->
     <ng-container *ngIf="!books">
       <mat-card class="example-card" *ngFor="let item of default">
@@ -30,25 +28,33 @@
     </ng-container>
 
     <!-- Card books -->
-    <mat-card class="example-card" *ngFor="let item of books">
-      <div class="fab">
-        <mat-icon fontSet="material-icons-outlined">favorite_border</mat-icon>
-      </div>
+    <mat-card class="card-border" *ngFor="let item of books">
       <owl-carousel [options]="carouselOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']">
         <div class="item">
-          <div class="thumbnail-image">
-            <img [src]="item.image" class="productImg" mat-card-image/>
+          <div class="image-container">
+            <img [src]="item.image" class="productImg product-image" mat-card-image/>
+            <div class="overlay">
+              <div class="button" (click)="getBook(item.id)">View Details</div>
+              <div class="button" (click)="addToCart(item)">Add To Cart</div>
+            </div>
           </div>
         </div>
       </owl-carousel>
+
       <mat-card-content>
-        <h3 style="margin: 0; font-weight: normal;">{{ item.title }}</h3>
+        <h3 style="margin: 0; font-weight: lighter; font-size: 15px;">{{ item.title }}</h3>
         <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span style="font-weight: bold; font-size: 14px;">${{ item.prince }}</span>
-          <mat-icon fontSet="material-icons-outlined">shopping_cart</mat-icon>
+          <mat-icon fontSet="material-icons-outlined" style="color: #57b846;">attach_money</mat-icon>
+          <span style="font-weight: bold; font-size: 18px; margin-right: 200px; margin-top: 2px">
+          {{ item.prince }}
+          </span>
         </div>
       </mat-card-content>
+
     </mat-card>
   </div>
+</div>
 
+<div class="container-fluid ecom-home-marketing-container">
+  <app-marketing></app-marketing>
 </div>

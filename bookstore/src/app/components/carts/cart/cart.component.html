@@ -1,0 +1,75 @@
+<div class="shopping-cart-conatiner" style="padding-top: 125px;">
+
+  <div class="title">My Cart</div>
+
+  <div *ngIf="cartList.length > 0; else emptyCart">
+    <div class="header">
+
+      <div class="img"></div>
+      <div class="name">Product</div>
+      <div class="price">Prince</div>
+      <div class="quantity">Quantity</div>
+      <div class="total">Action</div>
+      <div class="close"></div>
+
+    </div>
+
+    <div class="body" *ngFor="let cart of cartList; let i = index">
+
+      <div class="img" >
+        <img class="productImg" src="{{cart.book.image}}">
+      </div>
+
+      <div class="name">
+        <h3> {{ cart.book.title }} </h3>
+      </div>
+
+      <div class="price" >
+        {{ cart.book.prince }}
+      </div>
+
+      <div class="quantity">
+        <div class="">
+          <app-quantity-control [quantity]="cart.quantity" (onChange)="changeQuantity(cart, $event)"></app-quantity-control>
+        </div>
+      </div>
+
+      <div class="close" (click)="removeFromCart(i)">
+        <mat-icon fontSet="material-icons-outlined" class="close-icon">close</mat-icon>
+      </div>
+
+      <div class="close">
+      </div>
+
+    </div>
+
+    <div class="cart-total">
+      <h2>CART TOTALS</h2>
+      <hr>
+      <table style="width: 100%">
+        <tr>
+            <td>Subtotal</td>
+            <td>${{ totalPrice }}</td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <hr>
+          </td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td><b>${{ totalPrice }}</b></td>
+        </tr>
+      </table>
+      <div class="checkout-button" (click)="checkout()">
+        <button mat-stroked-button color="primary" class="button full-button">PROCEED TO CHECKOUT</button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #emptyCart>
+    <app-empty-cart></app-empty-cart>
+  </ng-template>
+</div>
+
+

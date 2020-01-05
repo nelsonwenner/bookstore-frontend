@@ -1,0 +1,283 @@
+mat-card {
+  box-shadow: none !important;
+  width: 300px !important;
+}
+
+.conatiner {
+  background: #f8f9fa !important;
+  display: flex;
+  justify-content: center;
+  padding: 20px 2%;
+  font-weight: 400;
+  color: black;
+}
+
+.product-img-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #f0f0f0;
+}
+
+.product-description {
+  flex: 1;
+}
+
+.buy-now-button {
+  border-radius: 0;
+}
+.buy-now-button.space {
+  margin-right: 10px;
+}
+
+.rating {
+  margin-left: 10px;
+}
+.sold{
+  margin-left: 10px;
+}
+
+.description {
+  font-size: 14px;
+  color: gray;
+  animation: animate 1s linear forwards;
+}
+
+@keyframes animate {
+  0% {
+
+      filter: blur(1px);
+  }
+  100% {
+
+      filter: blur(0);
+  }
+}
+
+.description-tabs{
+  margin: 0px 2%;
+  min-height: 300px;
+  color: black;
+}
+.img-box{
+  flex: 1;
+  text-align: center;
+}
+.detail-box{
+flex: 12;
+}
+
+.products-container{
+  background: #f8f9fa !important;
+  padding: 1em 0;
+  position: relative;
+}
+
+.title {
+  border-left: 5px solid #3f51b5;
+  padding-left: 10px;
+  position: relative;
+  font-size: 30px;
+  font-weight: 600;
+  color: #000000;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.viewAllBtn{
+  float: right;
+  margin-top: 10px;
+  border-radius: 0;
+}
+.body{
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.body .productImg {
+  padding: 18px;
+  width: 100%;
+  height: 200px;
+}
+
+@media (max-width: 1080px) {
+  .conatiner {
+      display: block;
+      padding: 20px 5%;
+  }
+  .products-container {
+      display: none;
+  }
+  .description-tabs{
+      margin: 0px 2%;
+      margin-bottom: 10px;
+  }
+  .title {
+      border-left: 5px solid #3f51b5;
+      padding-left: 10px;
+      position: relative;
+      font-size: 20px;
+      font-weight: 600;
+      color: #000000;
+      margin-left: 0.5%;
+      width: 100%;
+      margin-bottom: 20px;
+  }
+}
+
+.ecom-modal-row .ecom-modal-stock {
+  color: green;
+}
+.ecom-modal-row .ecom-modal-stock i {
+  font-size: 15px !important;
+  padding-right:10px;
+}
+
+.btn {
+  position: relative;
+  height: 35px;
+  width: 150px;
+  border-radius: 10px !important;
+}
+
+.btn-secondary {
+  color: #fff;
+  background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #57b846;
+}
+
+.btn-delete {
+  color: #fff;
+  background-color: #e40046;
+}
+
+.btn-delete:hover {
+  color: #fff;
+  background-color: #f53d74;
+}
+
+.btn-block {
+  display: block !important;;
+  width: 100% ;
+}
+
+.cart_animation {
+  color: #fff;
+}
+
+.heart_animation:hover {
+  color: #e40046;
+}
+
+.product-details-button {
+  padding:25px 0;
+  border-top: 1px solid #e4e4e4;
+  text-align: center;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------  */
+
+.product-page {
+  width: 100%;
+}
+.product-page-container {
+  max-width: 1140px;
+  text-align: center;
+  padding: 0 30px;
+  margin: auto;
+}
+.product-breadcrumbs {
+  padding: 30px 0;
+}
+.product-breadcrumbs li{
+  display: inline-block;
+  letter-spacing: .1em;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: .85em;
+}
+.product-breadcrumbs li a {
+  color: #4a4a4a;
+}
+.product-breadcrumbs li:last-child{
+  opacity: 0.5;
+}
+
+.product-details-image {
+  width: 95%;
+  padding-top: 63.3%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media screen and (max-width: 992px) {
+  .product-details-image {
+      width: 100%;
+      padding-top: 66.6%;
+  }
+}
+.product-brand {
+  color: #7d7d7d;
+}
+.product-title {
+  margin:15px 0;
+  font-size:2.5em;
+  font-weight: 400;
+  font-family: "Playfair Display";
+}
+.product-price {
+  color:#9f9f9f;
+  font-family: "Playfair Display";
+  font-size:20px;
+}
+.product-description {
+  color: #7d7d7d;
+  margin:10px 0 30px 0;
+}
+.product-details-button {
+  padding:25px 0;
+  border-top: 1px solid #e4e4e4;
+  text-align: center;
+}
+
+.product-cart-button {
+  vertical-align: top;
+  margin-left:5px
+}
+
+.col-md-4 {
+position: relative;
+width: 100%;
+padding-right: 15px;
+padding-left: 15px;
+flex: 0 0 33.333333%;
+max-width: 33.333333%;
+}
+
+.btn-lg {
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  text-align: center;
+  border-radius: 0.3rem;
+}
+
+.button {
+  background-color: black;
+  color: #fff;
+  border-radius: 50px !important;
+}
+
+.button:hover {
+  color: #fff;
+  background-color: #57b846;
+}

@@ -1,0 +1,46 @@
+<div class="pop-cart-item" *ngFor="let cart of cartList;let i = index">
+    <div class="pop-cart-item-image-wrapper">
+        <a class="pop-cart-item-image" title={{cart.book.title}}>
+          <img [src]="cart.book.image" height="100px" width="80px"/>
+        </a>
+    </div>
+    <div class="pop-cart-item-details">
+        <h1 class="pop-cart-item-title">
+            <a href="">{{cart.book.title}} <span class="pop-cart-item-quantity">× {{cart.quantity}}</span></a>
+        </h1>
+        <span class="pop-cart-item-price">
+            $ {{cart.book.prince }}
+        </span>
+    </div>
+    <div class="pop-cart-remove-wrapper">
+        <span (click)="removeFromCart(i)" class="cart-remove">X</span>
+    </div>
+</div>
+<div *ngIf="cartList.length > 0">
+  <div class="cart-total">
+      <div class="cart-total-item">
+      <span class="cart-total-label">
+          Total
+      </span>
+      <span class="cart-total-value">
+          $ {{ totalPrice }}
+      </span>
+      </div>
+  </div>
+  <footer class="quick-cart-footer">
+
+    <!-- Page View cart -->
+    <div class="quick-cart-footer-cell" [routerLink]="['/carts']">
+      <div class="buttonn btn-view-cart button-wide btn-lg">
+        <h3 style="margin: 0; font-weight: lighter; font-size: 15px;">View Cart</h3>
+      </div>
+    </div>
+
+    <!-- Page checkout -->
+    <div class="quick-cart-footer-cell">
+      <div class="buttonn btn-checkout button-wide btn-lg">
+        <h3 style="margin: 0; font-weight: lighter; font-size: 15px;">Checkout</h3>
+      </div>
+    </div>
+  </footer>
+</div>

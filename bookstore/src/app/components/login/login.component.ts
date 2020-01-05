@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 /* Add imports*/
-import { UsersService } from './../../services/users.service';
-import { MatDialog, MatDialogRef } from '@angular/material';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Router } from "@angular/router";
 import { SignupComponent } from '../signup/signup.component';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { AuthService } from '../../core/services/auth.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -13,14 +14,17 @@ import { SignupComponent } from '../signup/signup.component';
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
-  registerForm: FormGroup;
-  submitted = false;
+  private subscription = [];
+
+  private registerForm: FormGroup;
+  private submitted = false;
 
   constructor(public dialogRef: MatDialogRef<LoginComponent>,
-              private usersService: UsersService,
+              private authService: AuthService,
               private formBuilder: FormBuilder,
+              private toastr: ToastrService,
               public dialog: MatDialog,
               private router: Router) { }
 
@@ -33,41 +37,62 @@ export class LoginComponent implements OnInit {
 
   }
 
-  private async login() {
+  ngOnDestroy() {
+
+    this.subscription.forEach(sub => sub.unsubscribe());
+
+  }
+
+  private login(): void {
 
     this.submitted = true;
 
     if (this.registerForm.invalid) { return; }
 
-    const response = await this.usersService.login(this.registerForm.value).toPromise();
+    this.subscription.push(this.authService.login(this.registerForm.value)
+    .subscribe(response => {
 
-    if (response['token']) {
+      if (response.token && !response.is_staff) {
 
-      const data = {
-        token: response['token'],
-        user_id: response['user_id'],
-        username: response['username'],
-        email: response['email'],
-        is_staff: response['is_staff']
+        localStorage.setItem('currentUser', JSON.stringify(response));
+
+        this.subscription.push(this.authService.getDataClient(response.id)
+        .subscribe(client => {
+
+          localStorage.setItem('currentUser', JSON.stringify(client));
+          this.authService.getObserverIsLoggedIn().next(true);
+          this.onNoClick();
+        }));
       }
-      
-      localStorage.setItem('token', JSON.stringify(data));
-      //this.router.navigate(['/dashboard']);
-      return;
-    }
+    },
+    error => {
+      return this.toastr.error('Invalid Credentials', 'Login', {
+        progressAnimation: 'decreasing',
+        positionClass: 'toast-bottom-right',
+        progressBar: true,
+        closeButton: true,
+        timeOut: 3000,
+      });
+    }));
   }
 
-  get attribute() { return this.registerForm.controls; }
+  private get attribute() { return this.registerForm.controls; }
 
-  onSignUpClick() {
+  private onSignUpClick(): void {
     this.dialogRef.close();
+
     setTimeout(() => {
-      const dialogRef = this.dialog.open(SignupComponent,{
+      const dialogRef = this.dialog.open(SignupComponent, {
         data: {}
       });
-      dialogRef.afterClosed().subscribe(
-        res => console.log(res)
-      );
+
+      this.subscription.push(dialogRef.afterClosed().
+      subscribe(res => console.log(res)
+      ));
     }, 300);
+  }
+
+  private onNoClick(): void {
+    this.dialogRef.close();
   }
 }

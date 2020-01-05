@@ -1,10 +1,11 @@
-import {  BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TokenInterceptorService } from './core/services/token-interceptor.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OwlModule } from 'ngx-owl-carousel';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 /* Add imports */
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgImageSliderModule } from 'ng-image-slider';
@@ -19,16 +20,31 @@ const skltnConfig: SkltnConfig = {
 
 import * as MATERIAL_MODULES from '@angular/material';
 
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { HeaderComponent } from './components/common/header/header.component';
+import { SliderComponent } from './components/commons/slider/slider.component';
+import { HeaderComponent } from './components/commons/header/header.component';
+import { FooterComponent } from './components/commons/footer/footer.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { AuthGuardService } from './core/guard/auth-guard.service';
+import { MdePopoverModule } from '@material-extended/mde';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { AuthGuardService } from './guard/auth-guard.service';
-import { SliderComponent } from './components/common/slider/slider.component';
-import { HomeComponent } from './components/home/home.component';
-import { FooterComponent } from './components/common/footer/footer.component';
+import { BooksComponent } from './components/books/book/books.component';
+import { ErrorInterceptorService } from './core/services/error-interceptor.service';
+import { ToastrModule } from 'ngx-toastr';
+import { Page404 } from './components/page404/page404.component';
+import { BookDetailComponent } from './components/books/book-detail/book-detail.component';
+import { MarketingComponent } from './components/widgets/marketing/marketing.component';
+import { CartPopupComponent } from './components/carts/cart-popup/cart-popup.component';
+import { CartComponent } from './components/carts/cart/cart.component';
+import { QuantityControlComponent } from './components/carts/quantity-control/quantity-control.component';
+import { EmptyCartComponent } from './components/carts/empty-cart/empty-cart.component';
+import { CheckoutComponent } from './components/checkouts/checkout/checkout.component';
+import { AccountComponent } from './components/accounts/account/account.component';
+import { ProfileInformationComponent } from './components/accounts/profile-information/profile-information.component';
+import { ManageAddressComponent } from './components/accounts/manage-address/manage-address.component';
+import { ManageCreditCardComponent } from './components/accounts/manage-credit-card/manage-credit-card.component';
 
 
 @NgModule({
@@ -36,11 +52,24 @@ import { FooterComponent } from './components/common/footer/footer.component';
     AppComponent,
     LoginComponent,
     SignupComponent,
-    DashboardComponent,
     HeaderComponent,
     SliderComponent,
     HomeComponent,
     FooterComponent,
+    BooksComponent,
+    Page404,
+    BookDetailComponent,
+    MarketingComponent,
+    CartPopupComponent,
+    CartComponent,
+    QuantityControlComponent,
+    EmptyCartComponent,
+    CheckoutComponent,
+    AccountComponent,
+    ProfileInformationComponent,
+    ManageAddressComponent,
+    ManageCreditCardComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -48,6 +77,7 @@ import { FooterComponent } from './components/common/footer/footer.component';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
 
     /* Material */
     MATERIAL_MODULES.MatAutocompleteModule,
@@ -83,9 +113,16 @@ import { FooterComponent } from './components/common/footer/footer.component';
     OwlModule,
     ReactiveFormsModule,
     NgImageSliderModule,
-    NgxSkltnModule.forRoot(skltnConfig)
+    NgxSkltnModule.forRoot(skltnConfig),
+    MdePopoverModule
   ],
-  providers: [AuthGuardService],
+  providers: [
+
+    AuthGuardService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true },
+
+  ],
   bootstrap: [AppComponent],
   entryComponents: [LoginComponent, SignupComponent]
 })

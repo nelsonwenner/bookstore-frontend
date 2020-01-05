@@ -1,0 +1,104 @@
+<div style="padding-top: 120px; padding-bottom: 20px; background: rgb(224, 224, 223);">
+  <div class="filter-box" style="display:flex">
+    <div class="advance-filter">
+      <span class="right-border cursor" (click)="showOption('CATEGORY')">CATEGORY</span> <div class="vertical-line">A</div>
+      <span class="right-border cursor" (click)="showOption('price')">PRICE</span> <div class="vertical-line">A</div>
+      <span class="cursor" (click)="showOption('price')">FAVORITES</span>
+    </div>
+  </div>
+
+  <div *ngIf="showFilter || applyFilter" >
+    <div style="display:flex;" class="filter-box ">
+      <div *ngIf="preserveFilterName=='CATEGORY'" class="filter-option fadeIn">
+        <ul class="filter-list">
+          <li><span>Bibliografia</span></li>
+          <li><span>Terror</span></li>
+          <li><span>Aventura</span></li>
+          <li><span>Ficção Cientifica</span></li>
+          <li><span>Manga</span></li>
+        </ul>
+      </div>
+
+      <div *ngIf="preserveFilterName=='price'" class="filter-option fadeIn">
+        <ul class="filter-list">
+            <li><input type="checkbox"></li><span>0-999</span>
+            <li><input type="checkbox"></li><span>1000-1999</span>
+            <li><input type="checkbox"></li><span>2000 & above</span>
+        </ul>
+      </div>
+    </div>
+    <div style="display:flex;" class="filter-box fadeIn">
+        <span style="cursor:pointer; margin-right: 10px;" (click)='showFilter = false'>CLEAR ALL ×</span> |
+        <button mat-button mat-raised-button class="apply-btn" (click)='showFilter = false'>APPLY</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="products-container">
+  <div class="body">
+
+    <!-- Card default -->
+    <ng-container *ngIf="!books">
+      <mat-card class="example-card" *ngFor="let item of default">
+        <skltn-root class="example-card" duration="1000" [rectRadius]="10" flareWidth="50%" bgFill="#d8d5d1"
+          flareFill="rgba(255,255,255, 0.5)">
+          <div class="skltn-card">
+            <div skltn-bone class="skltn-card__avatar" type="circle"></div>
+            <div class="skltn-card__body">
+              <div skltn-bone class="skltn-card__title"></div>
+              <div skltn-bone class="skltn-card__line"></div>
+              <div skltn-bone class="skltn-card__line"></div>
+            </div>
+          </div>
+        </skltn-root>
+      </mat-card>
+    </ng-container>
+
+    <!-- Card books -->
+    <mat-card class="card-border onLoad" *ngFor="let item of books">
+      <owl-carousel [options]="carouselOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']">
+        <div class="item">
+          <div class="image-container">
+            <img [src]="item.image" class="productImg product-image" mat-card-image/>
+            <div class="overlay">
+              <div class="button" (click)="getBook(item.id)">View Details</div>
+              <div class="button" (click)="addToCart(item)">Add To Cart</div>
+            </div>
+          </div>
+        </div>
+      </owl-carousel>
+
+      <mat-card-content>
+        <h3 style="margin: 0; font-weight: lighter; font-size: 15px;">{{ item.title }}</h3>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <mat-icon fontSet="material-icons-outlined" style="color: #57b846;">attach_money</mat-icon>
+          <span style="font-weight: bold; font-size: 18px; margin-right: 200px; margin-top: 2px">
+          {{ item.prince }}
+          </span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination" style="padding-top: 50px; padding-bottom: 20px;" >
+
+    <ul *ngIf="books" class="pagination-css">
+
+      <li [ngClass]="{disabled: +currentPage === 1}" class="page-item previous-item">
+        <a [routerLink]="['/books']" [queryParams]="{ page: + currentPage - 1 }" class="page-link">Previous</a>
+      </li>
+
+      <li *ngFor="let page of totalPages" [ngClass]="{active: +currentPage === +page}" class="page-item">
+        <a [routerLink]="['/books']" [queryParams]="{ page: page }" class="page-link">{{page}}</a>
+      </li>
+
+      <li [ngClass]="{disabled: +currentPage === +totalPages.length}" class="page-item next-item">
+        <a [routerLink]="['/books']" [queryParams]="{ page: + currentPage + 1 }" class="page-link">Next</a>
+      </li>
+
+    </ul>
+  </div>
+
+</div>
