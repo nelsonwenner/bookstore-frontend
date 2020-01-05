@@ -41,6 +41,11 @@ import { CartComponent } from './components/carts/cart/cart.component';
 import { QuantityControlComponent } from './components/carts/quantity-control/quantity-control.component';
 import { EmptyCartComponent } from './components/carts/empty-cart/empty-cart.component';
 import { CheckoutComponent } from './components/checkouts/checkout/checkout.component';
+import { AccountComponent } from './components/accounts/account/account.component';
+import { ProfileInformationComponent } from './components/accounts/profile-information/profile-information.component';
+import { ManageAddressComponent } from './components/accounts/manage-address/manage-address.component';
+import { ManageCreditCardComponent } from './components/accounts/manage-credit-card/manage-credit-card.component';
+
 
 @NgModule({
   declarations: [
@@ -59,7 +64,12 @@ import { CheckoutComponent } from './components/checkouts/checkout/checkout.comp
     CartComponent,
     QuantityControlComponent,
     EmptyCartComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    AccountComponent,
+    ProfileInformationComponent,
+    ManageAddressComponent,
+    ManageCreditCardComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,10 @@
+import { ManageCreditCardComponent } from './components/accounts/manage-credit-card/manage-credit-card.component';
+import { ManageAddressComponent } from './components/accounts/manage-address/manage-address.component';
+import { ProfileInformationComponent } from './components/accounts/profile-information/profile-information.component';
+import { AccountComponent } from './components/accounts/account/account.component';
 import { CheckoutComponent } from './components/checkouts/checkout/checkout.component';
 import { CartComponent } from './components/carts/cart/cart.component';
 import { BooksComponent } from './components/books/book/books.component';
-import { LoginComponent } from './components/login/login.component';
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -19,6 +22,28 @@ const routes: Routes = [
   { path: 'books/:id', component: BookDetailComponent },
 
   { path: 'carts', component: CartComponent },
+
+  { path: 'accounts',
+  component: AccountComponent,
+  canActivate: [AuthGuardService],
+  children: [
+
+    {
+      path: 'profile',
+      component: ProfileInformationComponent
+    },
+
+    {
+      path: 'address',
+      component: ManageAddressComponent
+    },
+
+    {
+      path: 'creditcard',
+      component: ManageCreditCardComponent
+    }
+
+  ]},
 
   { path: 'carts/checkouts',
   component: CheckoutComponent,
