@@ -1,33 +1,64 @@
 <div class="container">
     <h3>Manage Cards</h3>
-    <div class="address-form">
+
+    <div class="address-form" *ngIf="creditcard">
       <form [formGroup]="cardForm">
-
         <div class="form-box">
             <mat-form-field appearance="outline">
-                <mat-label>Card Number</mat-label>
-                <input matInput placeholder="Enter your card number">
+                <mat-label>Card Owner</mat-label>
+                <input matInput formControlName="owner" placeholder="Enter your card owner" value="{{creditcard.owner}}">
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <mat-label>Card validity</mat-label>
-                <input matInput placeholder="Card validity">
+                <mat-label>Card Flag</mat-label>
+                <input matInput formControlName="flag" placeholder="Card flag" value="{{creditcard.flag}}">
             </mat-form-field>
         </div>
 
         <div class="form-box">
             <mat-form-field appearance="outline">
-                <mat-label>Name on card</mat-label>
-                <input matInput placeholder="Enter name on card">
+                <mat-label>Cart Number</mat-label>
+                <input matInput formControlName="number" placeholder="Enter card number" value="{{creditcard.number}}">
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <mat-label>Name This Card for future use</mat-label>
-                <input matInput placeholder="Enter name of this card for future use">
+                <mat-label>Cart number security</mat-label>
+                <input matInput formControlName="number_security" placeholder="Enter cart number security" value="{{creditcard.number_security}}">
             </mat-form-field>
 
         </div>
 
         <div class="form-box">
-            <button class="btn btn-block btn-round dark-background white-color" style="width: 100px;" >Save</button>
+            <button class="btn btn-block btn-round dark-background white-color" style="width: 100px;" (click)="updateCreditCart()">Save</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="address-form" *ngIf="!creditcard">
+      <form [formGroup]="cardForm">
+        <div class="form-box">
+            <mat-form-field appearance="outline">
+                <mat-label>Card Owner</mat-label>
+                <input matInput formControlName="owner" placeholder="Enter your card owner">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Card Flag</mat-label>
+                <input matInput formControlName="flag" placeholder="Card flag">
+            </mat-form-field>
+        </div>
+
+        <div class="form-box">
+            <mat-form-field appearance="outline">
+                <mat-label>Cart Number</mat-label>
+                <input matInput formControlName="number" placeholder="Enter card number">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Cart number security</mat-label>
+                <input matInput formControlName="number_security" placeholder="Enter cart number security">
+            </mat-form-field>
+
+        </div>
+
+        <div class="form-box">
+            <button class="btn btn-block btn-round dark-background white-color" style="width: 100px;" (click)="addCreditCart()">Save</button>
         </div>
       </form>
     </div>

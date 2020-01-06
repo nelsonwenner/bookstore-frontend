@@ -15,7 +15,6 @@ export class ManageAddressComponent implements OnInit, OnDestroy {
   private subscription = [];
 
   private addressForm: FormGroup;
-  private submitted = false;
 
   private addresss: Address;
 
@@ -42,9 +41,7 @@ export class ManageAddressComponent implements OnInit, OnDestroy {
 
   }
 
-  addAddress() {
-
-    this.submitted = true;
+  addAddress(): void {
 
     if (this.addressForm.invalid) { return; }
 
@@ -69,7 +66,30 @@ export class ManageAddressComponent implements OnInit, OnDestroy {
     }));
   }
 
-  existsAddress() {
+  updateAddress(): void {
+
+    if (this.addressForm.invalid) { return; }
+
+    const user = this.authService.getCurrentUser();
+
+    Object.keys(this.addressForm.value).map(key => {
+      if (this.addressForm.value[key] === '') {
+        delete this.addressForm.value[key];
+      }
+    });
+
+    this.subscription.push(this.address.patchAddress(this.addressForm.value, user.address)
+    .subscribe(address => {
+
+      if (address) {
+        this.address.getObserverOnAddress().next(true);
+      }
+
+    }));
+
+  }
+
+  existsAddress(): void {
     if (!!this.authService.getCurrentUser()) {
       const client = this.authService.getCurrentUser();
       this.subscription.push(this.address.getAddress(client.address).subscribe(address => {
@@ -78,7 +98,7 @@ export class ManageAddressComponent implements OnInit, OnDestroy {
     }
   }
 
-  observerAddress() {
+  observerAddress(): void {
     const client = this.authService.getCurrentUser();
     this.subscription.push(this.address.getObserverOnAddress().subscribe(newAddress => {
 
@@ -91,4 +111,3 @@ export class ManageAddressComponent implements OnInit, OnDestroy {
   }
 
 }
-

@@ -20,12 +20,17 @@ export class AddressService {
   }
 
   public getAddress(url: any): Observable<Address> {
-
     //const uri = `${environment.ApiRoot}/address/${id}/`;
     return this.http.get<Address>(url);
   }
 
-  getObserverOnAddress() {
+  public patchAddress(data: any, url: any): Observable<Address> {
+    //const uri = `${environment.ApiRoot}/address/${id}/`;
+    return this.http.patch<Address>(url, data);
+  }
+
+
+  public getObserverOnAddress() {
     return this.onAddress;
   }
 

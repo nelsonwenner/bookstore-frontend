@@ -1,3 +1,4 @@
+import { CreditCard } from './creditcard';
 import { Address } from './address';
 
 export class Client {
@@ -6,5 +7,6 @@ export class Client {
   email: string;
   phone: string;
   is_staff: boolean;
+  credit_card: CreditCard | null;
   address: Address | null;
 }
