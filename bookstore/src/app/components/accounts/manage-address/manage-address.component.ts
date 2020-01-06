@@ -3,6 +3,7 @@ import { AuthService } from './../../../core/services/auth.service';
 import { AddressService } from './../../../core/services/address.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-address',
@@ -20,6 +21,7 @@ export class ManageAddressComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService,
               private address: AddressService,
+              private toastr: ToastrService,
               private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -59,6 +61,14 @@ export class ManageAddressComponent implements OnInit, OnDestroy {
             localStorage.setItem('currentUser', JSON.stringify(client));
             this.address.getObserverOnAddress().next(true);
             this.authService.getObserverIsLoggedIn().next(true);
+
+            this.toastr.success('Save success', null, {
+              progressAnimation: 'decreasing',
+              positionClass: 'toast-bottom-right',
+              progressBar: true,
+              closeButton: true,
+              timeOut: 3000,
+            });
           }
 
         }));
@@ -83,6 +93,14 @@ export class ManageAddressComponent implements OnInit, OnDestroy {
 
       if (address) {
         this.address.getObserverOnAddress().next(true);
+
+        this.toastr.success('Save success', null, {
+          progressAnimation: 'decreasing',
+          positionClass: 'toast-bottom-right',
+          progressBar: true,
+          closeButton: true,
+          timeOut: 3000,
+        });
       }
 
     }));

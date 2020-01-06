@@ -3,6 +3,7 @@ import { CreditCardService } from '../../../core/services/credit-card.service';
 import { CreditCard } from './../../../core/models/creditcard';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-credit-card',
@@ -20,6 +21,7 @@ export class ManageCreditCardComponent implements OnInit, OnDestroy  {
 
   constructor(private creditCartService: CreditCardService,
               private authService: AuthService,
+              private toastr: ToastrService,
               private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -59,6 +61,14 @@ export class ManageCreditCardComponent implements OnInit, OnDestroy  {
             localStorage.setItem('currentUser', JSON.stringify(client));
             this.creditCartService.getObserverOnCreditCard().next(true);
             this.authService.getObserverIsLoggedIn().next(true);
+
+            this.toastr.success('Save success ', null, {
+              progressAnimation: 'decreasing',
+              positionClass: 'toast-bottom-right',
+              progressBar: true,
+              closeButton: true,
+              timeOut: 3000,
+            });
           }
         }));
       }
@@ -82,6 +92,14 @@ export class ManageCreditCardComponent implements OnInit, OnDestroy  {
 
       if (creditcart) {
         this.creditCartService.getObserverOnCreditCard().next(true);
+
+        this.toastr.success('Save success', null, {
+          progressAnimation: 'decreasing',
+          positionClass: 'toast-bottom-right',
+          progressBar: true,
+          closeButton: true,
+          timeOut: 3000,
+        });
       }
 
     }));
