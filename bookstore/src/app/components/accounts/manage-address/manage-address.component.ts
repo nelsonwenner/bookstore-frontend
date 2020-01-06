@@ -9,20 +9,21 @@ import { Component, OnInit } from '@angular/core';
 
 export class ManageAddressComponent implements OnInit {
 
-  addressForm: FormGroup;
+  private addressForm: FormGroup;
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
 
     this.addressForm = this.fb.group({
-      firstName: [''],
-      lastName: [''],
-      pincode:[],
-      locality: [],
-      address: []
-    })
+      street: [''],
+      suite: [''],
+      city: [''],
+      zipcode: ['']
+    });
   }
+
+  
 
 }
 
