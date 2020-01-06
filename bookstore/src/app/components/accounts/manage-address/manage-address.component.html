@@ -10,25 +10,25 @@
             <div class="form-box">
                 <mat-form-field appearance="outline">
                     <mat-label>Street</mat-label>
-                    <input matInput formControlName="street" placeholder="Enter your street">
+                    <input matInput formControlName="street" placeholder="Enter your street" value="{{addresss.street}}">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Suite</mat-label>
-                    <input matInput formControlName="suite" placeholder="Enter your suite">
+                    <input matInput formControlName="suite" placeholder="Enter your suite" value="{{addresss.suite}}">
                 </mat-form-field>
             </div>
             <div class="form-box">
                 <mat-form-field appearance="outline">
                     <mat-label>City</mat-label>
-                    <input matInput formControlName="city" placeholder="Enter your city">
+                    <input matInput formControlName="city" placeholder="Enter your city" value="{{addresss.city}}">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Zipcode</mat-label>
-                    <input matInput formControlName="zipcode" placeholder="Enter zipcode">
+                    <input matInput formControlName="zipcode" placeholder="Enter zipcode" value="{{addresss.zipcode}}">
                 </mat-form-field>
             </div>
             <div class="form-box">
-                <button class="btn btn-block btn-round dark-background white-color" style="width: 100px;" >Save</button>
+                <button class="btn btn-block btn-round dark-background white-color" style="width: 100px;" (click)="addAddress()">Save</button>
             </div>
 
         </form>

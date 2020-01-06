@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
       if (response.token && !response.is_staff) {
 
+        localStorage.setItem('token', JSON.stringify(response.token));
         localStorage.setItem('currentUser', JSON.stringify(response));
 
         this.subscription.push(this.authService.getDataClient(response.id)

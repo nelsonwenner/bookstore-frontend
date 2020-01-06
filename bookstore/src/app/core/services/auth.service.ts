@@ -32,8 +32,14 @@ export class AuthService {
 
   public logout(): void {
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
     this.isloggedIn.next(false);
     this.router.navigate(['home']);
+  }
+
+  public patchClient(data: any, id: number): Observable<Client> {
+    const uri = `${environment.ApiRoot}/${ApiEndpoints.client}/${id}/`;
+    return this.http.patch<Client>(uri, data);
   }
 
   public register(data: Register): Observable<Register> {
@@ -55,10 +61,10 @@ export class AuthService {
   }
 
   public getToken(): string {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const currentToken = JSON.parse(localStorage.getItem('token'));
 
-    if (!!currentUser) {
-      return currentUser.token;
+    if (!!currentToken) {
+      return currentToken;
     }
   }
 
