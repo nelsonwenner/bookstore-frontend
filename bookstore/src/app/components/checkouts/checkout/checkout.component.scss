@@ -1,0 +1,256 @@
+$grid: 8px;
+
+$textColor: #333434;
+$themeBackground: #3d4044;
+$primaryColor: #5868D7;
+$primaryColor2: #6DEDF6;
+
+$whiteSmokeColor: #F5F5F5;
+$satinColor:#ECE8DF;
+$mercuryColor: #e1e1e1;
+$stormGreyColor: #7b7d8b;
+$charcoalColor: #3d4044;
+
+.main-wrapper {
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0 $grid;
+  width: 1180px;
+}
+
+@media (max-width: 1200px) {
+  .main-wrapper {
+    padding: 0 $grid*3;
+    width: 100%;
+  }
+  @media (max-width: 500px) {
+    .main-wrapper {
+      padding: 0 $grid*2;
+    }
+  }
+}
+
+:host {
+  margin: $grid*6 0;
+}
+
+.instruction {
+  align-items: center;
+  border-bottom: 1px solid $mercuryColor;
+  border-top: 1px solid $mercuryColor;
+  display: flex;
+  flex-direction: row;
+  padding: $grid/2 0;
+  justify-content: space-between;
+}
+
+.required-field {
+  font-size: 0.9rem;
+}
+
+.checkout-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: $grid*3 0;
+  width: 100%;
+}
+
+.customer-details {
+  margin-right: $grid*1.5;
+  width: 70%;
+}
+
+section {
+  align-items: flex-start;
+  border-bottom: 1px solid $mercuryColor;
+  color: $charcoalColor;
+  display: flex;
+  flex-direction: row;
+  padding: $grid*1.5 0;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-right: $grid*1.5;
+  width: 120px;
+  strong {
+    color: #aaa;
+    font-size: 3rem;
+    margin-right: $grid*2.5;
+  }
+  span {
+    font-weight: 700;
+    line-height: 1.4rem;
+  }
+}
+
+fieldset {
+  border: 0;
+  flex-grow: 1;
+  margin: 0;
+  padding: 0;
+}
+
+.field {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: $grid*1.5;
+}
+
+.label-wrap {
+  margin-right: $grid*1.5;
+  text-align: right;
+  width: 150px;
+}
+
+label {
+  &.required {
+    &:after {
+      content: " *";
+    }
+  }
+}
+
+.container {
+  width: 260px;
+  &.expiry-date {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    select {
+      box-sizing: border-box;
+      margin-right: $grid;
+      width: 50%;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.delivery-option, .payment-option {
+  display: flex;
+  flex-direction: column;
+  .cost {
+    color: #3eb14f;
+    font-weight: 700;
+    margin-left: $grid*3.5;
+    text-transform: uppercase;
+  }
+}
+
+.radio {
+  margin-left: $grid*7.5;
+}
+
+.submit-button {
+  margin: $grid*5 0;
+  text-align: center;
+}
+
+.submit {
+  background: $primaryColor;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 400;
+  line-height: 3.6rem;
+  padding: 0 $grid*3;
+  text-transform: uppercase;
+  &:hover {
+    box-shadow: 0 5px 30px rgba(79, 70, 228, 0.8);
+  }
+}
+
+.order-summary {
+  border: 1px solid $mercuryColor;
+  width: 280px;
+  .header {
+    background: $primaryColor;
+    box-sizing: border-box;
+    color: #ffffff;
+    padding: $grid*1.5;
+    width: 100%;
+  }
+
+}
+
+.basket {
+  box-sizing: border-box;
+  padding: $grid*1.5;
+  width: 100%;
+}
+
+.basket-table {
+  border: 0;
+  border-collapse: collapse;
+  text-align: center;
+  width: 100%;
+  .description {
+    padding-right: $grid/2;
+    text-align: left;
+    width: 70%;
+    .container {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+    }
+    .product-photo {
+      flex-shrink: 0;
+      height: 70px;
+      margin-right: $grid;
+      text-align: center;
+      width: 70px;
+      img {
+        max-height: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+  td {
+    padding: $grid 0;
+    border-bottom: 1px solid $mercuryColor;
+  }
+  tfoot {
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: $grid*1.5;
+    text-align: center;
+    td {
+      border-bottom: none;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .checkout-box {
+    flex-direction: column;
+  }
+  .customer-details {
+    width: 100%;
+  }
+  .order-summary {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  section {
+    align-items: inherit;
+    flex-direction: column;
+  }
+  .label-wrap {
+    flex-shrink: 0;
+    text-align: left;
+    width: 110px;
+  }
+  .container {
+    flex-grow: 1;
+    width: auto;
+  }
+}

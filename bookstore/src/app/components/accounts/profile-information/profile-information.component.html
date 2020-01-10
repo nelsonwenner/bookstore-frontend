@@ -3,7 +3,7 @@
   <div class="form-box">
       <mat-form-field appearance="outline">
           <mat-label>first name</mat-label>
-          <input matInput formControlName="firstName" placeholder="Placeholder" value="{{currentUser.name}}">
+          <input matInput formControlName="firstName" placeholder="Placeholder" [(ngModel)]="currentUser.name">
       </mat-form-field>
       <mat-form-field appearance="outline" class="lastName">
           <mat-label>last name</mat-label>

@@ -35,9 +35,7 @@ export class CartPopupComponent extends CartBaseComponent {
   }
 
   emptyCart() {
-    console.log('oiii')
     if (this.cartList.length) {
-
       this.router.navigate(['/carts']);
     }
   }

@@ -3,6 +3,7 @@
   padding: 1em 0;
   position: relative;
 }
+
 .header {
   margin-top: 20px;
   display: flex;
@@ -12,9 +13,9 @@
   min-height: 50px;
   color: black;
   flex-wrap: wrap;
-
   text-align: center;
 }
+
 .body {
   background: #fff;
   margin-top: 20px;
