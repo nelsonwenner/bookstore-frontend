@@ -7,21 +7,21 @@
             <div class="form-box">
                 <mat-form-field appearance="outline">
                     <mat-label>Street</mat-label>
-                    <input matInput formControlName="street" placeholder="Enter your street" value="{{addresss.street}}">
+                    <input matInput formControlName="street" placeholder="Enter your street" [(ngModel)]="addresss.street">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Suite</mat-label>
-                    <input matInput formControlName="suite" placeholder="Enter your suite" value="{{addresss.suite}}">
+                    <input matInput formControlName="suite" placeholder="Enter your suite" [(ngModel)]="addresss.suite">
                 </mat-form-field>
             </div>
             <div class="form-box">
                 <mat-form-field appearance="outline">
                     <mat-label>City</mat-label>
-                    <input matInput formControlName="city" placeholder="Enter your city" value="{{addresss.city}}">
+                    <input matInput formControlName="city" placeholder="Enter your city" [(ngModel)]="addresss.city">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Zipcode</mat-label>
-                    <input matInput formControlName="zipcode" placeholder="Enter zipcode" value="{{addresss.zipcode}}">
+                    <input matInput formControlName="zipcode" placeholder="Enter zipcode" [(ngModel)]="addresss.zipcode">
                 </mat-form-field>
             </div>
             <div class="form-box">

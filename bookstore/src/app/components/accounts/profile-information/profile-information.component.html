@@ -7,18 +7,18 @@
       </mat-form-field>
       <mat-form-field appearance="outline" class="lastName">
           <mat-label>last name</mat-label>
-          <input matInput formControlName="lastName" placeholder="Placeholder" value="">
+          <input matInput formControlName="lastName" placeholder="Placeholder">
       </mat-form-field>
   </div>
 
   <div class="form-box">
       <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input matInput formControlName="email" placeholder="Placeholder" value="{{currentUser.email}}">
+          <input matInput formControlName="email" placeholder="Placeholder" [(ngModel)]="currentUser.email">
       </mat-form-field>
       <mat-form-field appearance="outline">
           <mat-label>Number</mat-label>
-          <input matInput formControlName="mobile" placeholder="Placeholder" value="{{currentUser.phone}}">
+          <input matInput formControlName="mobile" placeholder="Placeholder" [(ngModel)]="currentUser.phone">
       </mat-form-field>
   </div>
 

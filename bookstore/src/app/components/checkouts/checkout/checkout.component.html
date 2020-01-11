@@ -5,7 +5,7 @@
     <p class="required-field">* Indicates required field</p>
   </div>
 
-  <div class="checkout-box">
+  <div class="checkout-box" *ngIf="addresss">
     <div class="customer-details">
 
       <section>
@@ -19,7 +19,7 @@
               <label class="required">Street</label>
             </div>
             <div class="container">
-              <input class="custom-botton" type="text" >
+              <input class="custom-botton" type="text" [(ngModel)]="addresss.street">
             </div>
           </div>
           <div class="field">
@@ -27,7 +27,7 @@
               <label class="required">Suite</label>
             </div>
             <div class="container">
-              <input class="custom-botton" type="text" >
+              <input class="custom-botton" type="text" [(ngModel)]="addresss.suite">
             </div>
           </div>
           <div class="field">
@@ -35,7 +35,7 @@
               <label class="required">City</label>
             </div>
             <div class="container">
-              <input class="custom-botton" type="text" >
+              <input class="custom-botton" type="text" [(ngModel)]="addresss.city">
             </div>
           </div>
           <div class="field">
@@ -43,7 +43,7 @@
               <label class="required">Zipcode</label>
             </div>
             <div class="container">
-              <input class="custom-botton" type="text" >
+              <input class="custom-botton" type="text" [(ngModel)]="addresss.zipcode">
             </div>
           </div>
         </fieldset>
@@ -61,7 +61,7 @@
                 <label class="required">Card owner</label>
               </div>
               <div class="container">
-                <input class="custom-botton" type="text" >
+                <input class="custom-botton" type="text" [(ngModel)]="creditcard.owner">
               </div>
             </div>
             <div class="field">
@@ -69,7 +69,7 @@
                 <label class="required">Card flag</label>
               </div>
               <div class="container">
-                <input class="custom-botton" type="text" >
+                <input class="custom-botton" type="text" [(ngModel)]="creditcard.flag">
               </div>
             </div>
             <div class="field">
@@ -77,7 +77,7 @@
                 <label class="required">Card number</label>
               </div>
               <div class="container">
-                <input class="custom-botton" type="text">
+                <input class="custom-botton" type="text" [(ngModel)]="creditcard.number">
               </div>
             </div>
              <div class="field">
@@ -85,7 +85,7 @@
                 <label class="required">Number security</label>
               </div>
               <div class="container">
-                <input class="custom-botton"  type="text">
+                <input class="custom-botton" type="text" [(ngModel)]="creditcard.number_security">
               </div>
             </div>
           </div>
@@ -93,8 +93,9 @@
       </section>
 
       <div class="submit-button">
-        <button class="submit">Submit My Order</button>
+        <button class="submit" (click)="createOrder()">Submit My Order</button>
       </div>
+
     </div>
     <aside>
       <article class="order-summary">

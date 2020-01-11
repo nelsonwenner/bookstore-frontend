@@ -6,22 +6,22 @@
         <div class="form-box">
             <mat-form-field appearance="outline">
                 <mat-label>Card Owner</mat-label>
-                <input matInput formControlName="owner" placeholder="Enter your card owner" value="{{creditcard.owner}}">
+                <input matInput formControlName="owner" placeholder="Enter your card owner" [(ngModel)]="creditcard.owner">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Card Flag</mat-label>
-                <input matInput formControlName="flag" placeholder="Card flag" value="{{creditcard.flag}}">
+                <input matInput formControlName="flag" placeholder="Card flag" [(ngModel)]="creditcard.flag">
             </mat-form-field>
         </div>
 
         <div class="form-box">
             <mat-form-field appearance="outline">
                 <mat-label>Cart Number</mat-label>
-                <input matInput formControlName="number" placeholder="Enter card number" value="{{creditcard.number}}">
+                <input matInput formControlName="number" placeholder="Enter card number" [(ngModel)]="creditcard.number">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Cart number security</mat-label>
-                <input matInput formControlName="number_security" placeholder="Enter cart number security" value="{{creditcard.number_security}}">
+                <input matInput formControlName="number_security" placeholder="Enter cart number security" [(ngModel)]="creditcard.number_security">
             </mat-form-field>
 
         </div>

@@ -4,9 +4,10 @@
 
 export const environment = {
 
-  ApiRoot: "http://localhost:8000",
+  ApiRoot: 'http://localhost:8000',
+  status_sale_default: 'http://localhost:8000/status/1/',
   production: false
-  
+
 };
 
 /*

@@ -29,9 +29,7 @@ export class AddressService {
     return this.http.patch<Address>(url, data);
   }
 
-
   public getObserverOnAddress() {
     return this.onAddress;
   }
-
 }
