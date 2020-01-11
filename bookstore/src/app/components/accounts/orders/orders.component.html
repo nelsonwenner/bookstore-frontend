@@ -1,0 +1,26 @@
+<h1>Past orders</h1>
+<div class="row" *ngFor="let order of ordersList; let i = index">
+  <mat-card class="card-custom">
+
+    <mat-card-title >
+      <div style="display: flex; justify-content: space-between;">
+        Books
+
+        <button  mat-icon-button color="dark" (click)="deleteOrder(order.id, i)">
+          <mat-icon class="delete" fontSet="material-icons-outlined">delete</mat-icon>
+        </button>
+      </div>
+
+    </mat-card-title>
+
+    <mat-card-subtitle *ngFor="let item of order.items; let i = index">
+      <button class="button-qnt"> {{ item.amount }} </button>
+      {{ item.title }}
+    </mat-card-subtitle>
+
+    <mat-card-subtitle>
+      Total: R$ {{ order.total | number:'1.2-2' }}
+    </mat-card-subtitle>
+
+  </mat-card>
+</div>

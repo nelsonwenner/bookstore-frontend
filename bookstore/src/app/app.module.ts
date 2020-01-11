@@ -45,6 +45,7 @@ import { AccountComponent } from './components/accounts/account/account.componen
 import { ProfileInformationComponent } from './components/accounts/profile-information/profile-information.component';
 import { ManageAddressComponent } from './components/accounts/manage-address/manage-address.component';
 import { ManageCreditCardComponent } from './components/accounts/manage-credit-card/manage-credit-card.component';
+import { OrdersComponent } from './components/accounts/orders/orders.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { ManageCreditCardComponent } from './components/accounts/manage-credit-c
     ProfileInformationComponent,
     ManageAddressComponent,
     ManageCreditCardComponent,
+    OrdersComponent,
 
   ],
   imports: [

@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.subscription.push(this.bookService.getAllBooks(1)
       .subscribe(response => {
-      if (!response.status) { this.books = response.results; }
+      if (response.results.length) { this.books = response.results; }
     }));
 
   }

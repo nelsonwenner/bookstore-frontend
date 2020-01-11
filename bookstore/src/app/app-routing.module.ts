@@ -1,3 +1,4 @@
+import { OrdersComponent } from './components/accounts/orders/orders.component';
 import { ManageCreditCardComponent } from './components/accounts/manage-credit-card/manage-credit-card.component';
 import { ManageAddressComponent } from './components/accounts/manage-address/manage-address.component';
 import { ProfileInformationComponent } from './components/accounts/profile-information/profile-information.component';
@@ -27,6 +28,11 @@ const routes: Routes = [
   component: AccountComponent,
   canActivate: [AuthGuardService],
   children: [
+
+    {
+      path: 'orders',
+      component: OrdersComponent
+    },
 
     {
       path: 'profile',

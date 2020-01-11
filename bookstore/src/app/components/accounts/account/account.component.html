@@ -26,6 +26,12 @@
             <div class="right-icon contain">
                 <mat-icon fontSet="material-icons-outlined" class="black-color">chevron_right</mat-icon>
             </div>
+
+             <div class="child-list">
+                <ul>
+                  <li [routerLink]="['orders']" routerLinkActive="active">My Orders</li>
+                </ul>
+            </div>
         </div>
 
         <div class="list">
@@ -52,7 +58,7 @@
         <div class="list">
 
             <div class="left-icon contain">
-                <mat-icon fontSet="material-icons-outlined" class="black-color">add_comment</mat-icon>
+                <mat-icon fontSet="material-icons-outlined" class="black-color">credit_card</mat-icon>
             </div>
             <div class="title contain">
                 PAYMENTS

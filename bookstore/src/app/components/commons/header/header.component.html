@@ -55,28 +55,26 @@
       </ul>
     </div>
   </div>
-
   <app-cart-popup></app-cart-popup>
 </div>
-
 
 <!-- Card settings client -->
 <mde-popover #profilePopover="mdePopover" [mdePopoverCloseOnClick]="true">
   <div class="profile-popover">
     <ul class="profile-dropdown">
-      <li [routerLink]="['/my-account/orders']" class="profile-dropdown-item" routerLinkActive="active">
+      <li [routerLink]="['/accounts/orders']" class="profile-dropdown-item" routerLinkActive="active">
         <button mat-icon-button color="dark">
             <mat-icon fontSet="material-icons-outlined">receipt</mat-icon>
         </button>
         Orders
       </li>
-      <li [routerLink]="['/myprofile/carddetails']" class="profile-dropdown-item" routerLinkActive="active">
+      <li [routerLink]="['/accounts/creditcard']" class="profile-dropdown-item" routerLinkActive="active">
         <button mat-icon-button color="dark">
             <mat-icon fontSet="material-icons-outlined">credit_card</mat-icon>
         </button>
         Payment
       </li>
-      <li [routerLink]="['/accounts']" class="profile-dropdown-item" routerLinkActive="active">
+      <li [routerLink]="['/accounts/profile']" class="profile-dropdown-item" routerLinkActive="active">
         <button mat-icon-button color="dark">
             <mat-icon fontSet="material-icons-outlined">person</mat-icon>
         </button>
