@@ -56,6 +56,7 @@ export class CartComponent extends CartBaseComponent  {
       }
 
     } else {
+      this.router.navigate(['home']);
       this.openLoginDialog();
     }
   }
