@@ -46,6 +46,8 @@ import { ProfileInformationComponent } from './components/accounts/profile-infor
 import { ManageAddressComponent } from './components/accounts/manage-address/manage-address.component';
 import { ManageCreditCardComponent } from './components/accounts/manage-credit-card/manage-credit-card.component';
 import { OrdersComponent } from './components/accounts/orders/orders.component';
+import { NgxUiLoaderModule} from 'ngx-ui-loader';
+import { EmptyOrderComponent } from './components/accounts/empty-order/empty-order.component';
 
 
 @NgModule({
@@ -71,6 +73,7 @@ import { OrdersComponent } from './components/accounts/orders/orders.component';
     ManageAddressComponent,
     ManageCreditCardComponent,
     OrdersComponent,
+    EmptyOrderComponent
 
   ],
   imports: [
@@ -79,6 +82,7 @@ import { OrdersComponent } from './components/accounts/orders/orders.component';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    NgxUiLoaderModule,
     ToastrModule.forRoot(),
 
     /* Material */

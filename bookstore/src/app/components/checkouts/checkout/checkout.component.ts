@@ -1,3 +1,5 @@
+import { Cart } from './../../../core/models/cart';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { ItemOrderService } from './../../../core/services/item-order.service';
 import { OrderService } from './../../../core/services/order.service';
@@ -10,6 +12,8 @@ import { AuthService } from './../../../core/services/auth.service';
 import { CartService } from 'src/app/core/services/cart.service';
 import { CartBaseComponent } from './../../carts/cart-popup/cart-base.component';
 import { Component, OnInit } from '@angular/core';
+import { NgxUiLoaderService, SPINNER } from 'ngx-ui-loader';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-checkout',
@@ -28,11 +32,13 @@ export class CheckoutComponent extends CartBaseComponent {
 
   constructor(private creditCartService: CreditCardService,
               private itemOrderService: ItemOrderService,
+              private ngxService: NgxUiLoaderService,
               private orderService: OrderService,
               protected cartService: CartService,
               private authService: AuthService,
               private address: AddressService,
-              ) {
+              private toastr: ToastrService,
+              private router: Router) {
 
     super(cartService);
 
@@ -58,7 +64,10 @@ export class CheckoutComponent extends CartBaseComponent {
         .subscribe(resp => { console.log(resp); });
 
       });
+
+      this.loading();
     }));
+
   }
 
   getAddress(): void {
@@ -79,6 +88,26 @@ export class CheckoutComponent extends CartBaseComponent {
         this.creditcard = creditcard;
       }));
     }
+  }
+
+  loading(): Promise<any> {
+    this.ngxService.start();
+
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(this.ngxService.stop());
+
+        resolve(this.toastr.success('Order completed successfully', null, {
+          progressAnimation: 'decreasing',
+          positionClass: 'toast-center-center',
+          progressBar: true,
+          closeButton: true,
+          timeOut: 15000,
+        }));
+
+        resolve(this.router.navigate(['home']));
+      }, 10000);
+    });
   }
 
 }

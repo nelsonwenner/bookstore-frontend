@@ -2,7 +2,7 @@ $grid: 8px;
 
 $textColor: #333434;
 $themeBackground: #3d4044;
-$primaryColor: #5868D7;
+$primaryColor: rgb(62, 153, 32);
 $primaryColor2: #6DEDF6;
 
 $whiteSmokeColor: #F5F5F5;
@@ -162,7 +162,7 @@ label {
   padding: 0 $grid*3;
   text-transform: uppercase;
   &:hover {
-    box-shadow: 0 5px 30px rgba(79, 70, 228, 0.8);
+    box-shadow: 0 5px 30px rgba(109, 237, 246, 0.7);
   }
 }
 
