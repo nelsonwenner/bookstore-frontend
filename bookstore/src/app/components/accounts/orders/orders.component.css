@@ -52,3 +52,16 @@ mat-card img:hover{
   background-color: white;
   color: red;
 }
+
+.check {
+  background-color: white !important;
+  font-size: 15px !important;
+  height: 15px;
+  width: 15px;
+  padding-right: 5px;
+  position: relative;
+  top: 3px;
+  color: green !important;
+}
+
+
