@@ -7,7 +7,7 @@
 </h1>
 
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/nelsondiaas/controle_de_faltas?color=%2304D361">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/nelsondiaas/bookstore-frontend?color=%2304D361">
 
   <a href="https://github.com/nelsondiaas">
     <img alt="Made by @nelsondiaas" src="https://img.shields.io/badge/made%20by-%40nelsondiaas-%2304D361">
@@ -15,8 +15,8 @@
 
   <img alt="License" src="https://img.shields.io/badge/license-MIT-%2304D361">
 
-  <a href="https://github.com/nelsondiaas/controle_de_faltas/stargazers">
-    <img alt="Stargazers" src="https://img.shields.io/github/stars/nelsondiaas/controle_de_faltas?style=social">
+  <a href="https://github.com/nelsondiaas/bookstore-frontend/stargazers">
+    <img alt="Stargazers" src="https://img.shields.io/github/stars/nelsondiaas/bookstore-frontend?style=social">
   </a>
 </p>
 
