@@ -1,0 +1,63 @@
+<div class="container">
+    <h3>Manage Addresses</h3>
+
+    <div class="address-form" *ngIf="addresss">
+        <form [formGroup]="addressForm">
+
+            <div class="form-box">
+                <mat-form-field appearance="outline">
+                    <mat-label>Street</mat-label>
+                    <input matInput formControlName="street" placeholder="Enter your street" [(ngModel)]="addresss.street">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Suite</mat-label>
+                    <input matInput formControlName="suite" placeholder="Enter your suite" [(ngModel)]="addresss.suite">
+                </mat-form-field>
+            </div>
+            <div class="form-box">
+                <mat-form-field appearance="outline">
+                    <mat-label>City</mat-label>
+                    <input matInput formControlName="city" placeholder="Enter your city" [(ngModel)]="addresss.city">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Zipcode</mat-label>
+                    <input matInput formControlName="zipcode" placeholder="Enter zipcode" [(ngModel)]="addresss.zipcode">
+                </mat-form-field>
+            </div>
+            <div class="form-box">
+                <button class="btn btn-block btn-round dark-background white-color" style="width: 100px;" (click)="updateAddress()">Save</button>
+            </div>
+
+        </form>
+    </div>
+
+     <div class="address-form" *ngIf="!addresss">
+        <form [formGroup]="addressForm">
+
+            <div class="form-box">
+                <mat-form-field appearance="outline">
+                    <mat-label>Street</mat-label>
+                    <input matInput formControlName="street" placeholder="Enter your street">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Suite</mat-label>
+                    <input matInput formControlName="suite" placeholder="Enter your suite">
+                </mat-form-field>
+            </div>
+            <div class="form-box">
+                <mat-form-field appearance="outline">
+                    <mat-label>City</mat-label>
+                    <input matInput formControlName="city" placeholder="Enter your city">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Zipcode</mat-label>
+                    <input matInput formControlName="zipcode" placeholder="Enter zipcode">
+                </mat-form-field>
+            </div>
+            <div class="form-box">
+                <button class="btn btn-block btn-round dark-background white-color" style="width: 100px;" (click)="addAddress()">Save</button>
+            </div>
+
+        </form>
+    </div>
+</div>

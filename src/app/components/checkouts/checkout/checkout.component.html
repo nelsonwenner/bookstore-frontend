@@ -1,0 +1,149 @@
+<div class="main-wrapper" style="padding-top: 120px;" ngxUiLoaderBlurred blur="10">
+  <h1>Checkout</h1>
+  <div class="instruction">
+    <p>Please provide your billing and delivery information below.</p>
+    <p class="required-field">* Indicates required field</p>
+  </div>
+
+  <div class="checkout-box" *ngIf="addresss">
+    <div class="customer-details">
+
+      <section>
+        <div class="header">
+          <strong>1</strong>
+          <span>Delivery<br> Address</span>
+        </div>
+        <fieldset>
+          <div class="field">
+            <div class="label-wrap">
+              <label class="required">Street</label>
+            </div>
+            <div class="container">
+              <input class="custom-botton" type="text" [(ngModel)]="addresss.street">
+            </div>
+          </div>
+          <div class="field">
+            <div class="label-wrap">
+              <label class="required">Suite</label>
+            </div>
+            <div class="container">
+              <input class="custom-botton" type="text" [(ngModel)]="addresss.suite">
+            </div>
+          </div>
+          <div class="field">
+            <div class="label-wrap">
+              <label class="required">City</label>
+            </div>
+            <div class="container">
+              <input class="custom-botton" type="text" [(ngModel)]="addresss.city">
+            </div>
+          </div>
+          <div class="field">
+            <div class="label-wrap">
+              <label class="required">Zipcode</label>
+            </div>
+            <div class="container">
+              <input class="custom-botton" type="text" [(ngModel)]="addresss.zipcode">
+            </div>
+          </div>
+        </fieldset>
+      </section>
+
+      <section>
+        <div class="header">
+          <strong>2</strong>
+          <span> Payment<br></span>
+        </div>
+        <fieldset>
+          <div class="payment-option">
+            <div class="field">
+              <div class="label-wrap">
+                <label class="required">Card owner</label>
+              </div>
+              <div class="container">
+                <input class="custom-botton" type="text" [(ngModel)]="creditcard.owner">
+              </div>
+            </div>
+            <div class="field">
+              <div class="label-wrap">
+                <label class="required">Card flag</label>
+              </div>
+              <div class="container">
+                <input class="custom-botton" type="text" [(ngModel)]="creditcard.flag">
+              </div>
+            </div>
+            <div class="field">
+              <div class="label-wrap">
+                <label class="required">Card number</label>
+              </div>
+              <div class="container">
+                <input class="custom-botton" type="text" [(ngModel)]="creditcard.number">
+              </div>
+            </div>
+             <div class="field">
+              <div class="label-wrap">
+                <label class="required">Number security</label>
+              </div>
+              <div class="container">
+                <input class="custom-botton" type="text" [(ngModel)]="creditcard.number_security">
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </section>
+
+      <div class="submit-button">
+        <button class="submit" (click)="createOrder()">Submit My Order</button>
+      </div>
+
+    </div>
+    <aside>
+      <article class="order-summary">
+        <div class="header">
+          Order Summary
+        </div>
+        <div class="basket">
+          <table class="basket-table">
+            <thead class="panel-head">
+            <tr>
+              <th class="description">
+                Items
+              </th>
+              <th class="price">
+                Price
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="product-item" *ngFor="let cart of cartList; let i = index">
+              <td class="description">
+                <div class="container">
+                  <div class="product-photo">
+                    <img src="{{ cart.book.image }}">
+                  </div>
+                  <div>
+                    <p class="product-name"> {{ cart.book.title }} </p>
+                  </div>
+                </div>
+              </td>
+              <td class="price"> {{ cart.book.prince }} </td>
+            </tr>
+            <tr class="product-item">
+              <td class="description">Delivery</td>
+              <td>$0.00</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <td>Order Total:</td>
+              <td>${{ totalPrice | number:'1.2-2' }}</td>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+      </article>
+    </aside>
+  </div>
+</div>
+
+<ngx-ui-loader fgsSize="100"></ngx-ui-loader>
