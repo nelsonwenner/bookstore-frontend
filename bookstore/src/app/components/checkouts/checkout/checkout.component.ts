@@ -12,7 +12,7 @@ import { AuthService } from './../../../core/services/auth.service';
 import { CartService } from 'src/app/core/services/cart.service';
 import { CartBaseComponent } from './../../carts/cart-popup/cart-base.component';
 import { Component, OnInit } from '@angular/core';
-import { NgxUiLoaderService, SPINNER } from 'ngx-ui-loader';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

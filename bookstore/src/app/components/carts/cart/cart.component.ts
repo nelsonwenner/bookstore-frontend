@@ -44,7 +44,7 @@ export class CartComponent extends CartBaseComponent  {
 
       } else {
 
-        this.router.navigate(['accounts']);
+        this.router.navigate(['accounts/profile']);
 
         this.toastr.error('Register your address and credit card in your account.', null, {
           progressAnimation: 'decreasing',
