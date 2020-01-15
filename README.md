@@ -62,6 +62,7 @@ $ ng e2e
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
 
----LINK PLAYLIST VIDEOS: https://www.youtube.com/playlist?list=PLtCRbMpjyWNVN1MaCzon1kYQdKyCEDuMp
+---
+LINK PLAYLIST VIDEOS: https://www.youtube.com/playlist?list=PLtCRbMpjyWNVN1MaCzon1kYQdKyCEDuMp
 
 
