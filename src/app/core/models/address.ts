@@ -5,4 +5,5 @@ export class Address {
   suite: string;
   city: string;
   zipcode: string;
+
 }

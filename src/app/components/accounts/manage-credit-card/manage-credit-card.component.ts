@@ -26,7 +26,6 @@ export class ManageCreditCardComponent implements OnInit, OnDestroy  {
 
   ngOnInit() {
 
-    this.observerCreditCard();
     this.existsCreditCart();
 
     this.cardForm = this.fb.group({
@@ -53,14 +52,14 @@ export class ManageCreditCardComponent implements OnInit, OnDestroy  {
       if (creditcart) {
 
         const user = this.authService.getCurrentUser();
-        this.subscription.push(this.authService.patchClient({"credit_card": `${creditcart.url}`}, user.id)
+        const id = creditcart.url.split('/')[4];
+
+        this.subscription.push(this.authService.patchClient({"credit_card": `${id}`}, user.id)
         .subscribe(client => {
 
           if (client.credit_card) {
 
             localStorage.setItem('currentUser', JSON.stringify(client));
-            this.creditCartService.getObserverOnCreditCard().next(true);
-            this.authService.getObserverIsLoggedIn().next(true);
 
             this.toastr.success('Save success ', null, {
               progressAnimation: 'decreasing',
@@ -87,11 +86,14 @@ export class ManageCreditCardComponent implements OnInit, OnDestroy  {
       }
     });
 
-    this.subscription.push(this.creditCartService.patchCreditCard(this.cardForm.value, user.credit_card)
+    this.subscription.push(this.creditCartService.patchCreditCard(this.cardForm.value, user.credit_card.url)
     .subscribe(creditcart => {
 
       if (creditcart) {
-        this.creditCartService.getObserverOnCreditCard().next(true);
+
+        this.subscription.push(this.authService.getDataClient(user.id).subscribe(client => {
+          localStorage.setItem('currentUser', JSON.stringify(client));
+        }));
 
         this.toastr.success('Save success', null, {
           progressAnimation: 'decreasing',
@@ -109,25 +111,10 @@ export class ManageCreditCardComponent implements OnInit, OnDestroy  {
   existsCreditCart(): void {
     if (!!this.authService.getCurrentUser()) {
       const client = this.authService.getCurrentUser();
-      this.subscription.push(this.creditCartService.getCreditCard(client.credit_card)
-      .subscribe(creditcard => {
-        this.creditcard = creditcard;
-      }));
+
+      this.creditcard = client.credit_card;
+
     }
-  }
-
-  observerCreditCard(): void {
-    const client = this.authService.getCurrentUser();
-    this.subscription.push(this.creditCartService.getObserverOnCreditCard()
-    .subscribe(newCreditCard => {
-
-      if (newCreditCard) {
-        this.subscription.push(this.creditCartService.getCreditCard(client.credit_card)
-        .subscribe(creditcard => {
-          this.creditcard = creditcard;
-        }));
-      }
-    }));
   }
 
 }

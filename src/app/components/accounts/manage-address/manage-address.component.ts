@@ -26,7 +26,6 @@ export class ManageAddressComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.observerAddress();
     this.existsAddress();
 
     this.addressForm = this.fb.group({
@@ -53,14 +52,14 @@ export class ManageAddressComponent implements OnInit, OnDestroy {
       if (address) {
 
         const user = this.authService.getCurrentUser();
-        this.subscription.push(this.authService.patchClient({"address": `${address.url}`}, user.id)
+        const id = address.url.split('/')[4];
+
+        this.subscription.push(this.authService.patchClient({"address": `${id}`}, user.id)
         .subscribe(client => {
 
           if (client.address) {
 
             localStorage.setItem('currentUser', JSON.stringify(client));
-            this.address.getObserverOnAddress().next(true);
-            this.authService.getObserverIsLoggedIn().next(true);
 
             this.toastr.success('Save success', null, {
               progressAnimation: 'decreasing',
@@ -88,11 +87,14 @@ export class ManageAddressComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.subscription.push(this.address.patchAddress(this.addressForm.value, user.address)
+    this.subscription.push(this.address.patchAddress(this.addressForm.value, user.address.url)
     .subscribe(address => {
 
       if (address) {
-        this.address.getObserverOnAddress().next(true);
+
+        this.subscription.push(this.authService.getDataClient(user.id).subscribe(client => {
+          localStorage.setItem('currentUser', JSON.stringify(client));
+        }));
 
         this.toastr.success('Save success', null, {
           progressAnimation: 'decreasing',
@@ -110,22 +112,10 @@ export class ManageAddressComponent implements OnInit, OnDestroy {
   existsAddress(): void {
     if (!!this.authService.getCurrentUser()) {
       const client = this.authService.getCurrentUser();
-      this.subscription.push(this.address.getAddress(client.address).subscribe(address => {
-        this.addresss = address;
-      }));
+
+      if (client.address) {
+        this.addresss = client.address;
+      }
     }
   }
-
-  observerAddress(): void {
-    const client = this.authService.getCurrentUser();
-    this.subscription.push(this.address.getObserverOnAddress().subscribe(newAddress => {
-
-      if (newAddress) {
-        this.subscription.push(this.address.getAddress(client.address).subscribe(address => {
-          this.addresss = address;
-        }));
-      }
-    }));
-  }
-
 }

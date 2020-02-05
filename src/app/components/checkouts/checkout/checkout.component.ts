@@ -73,20 +73,18 @@ export class CheckoutComponent extends CartBaseComponent {
   getAddress(): void {
     if (!!this.authService.getCurrentUser()) {
       const client = this.authService.getCurrentUser();
-      this.subscription.push(this.address.getAddress(client.address)
-      .subscribe(address => {
-        this.addresss = address;
-      }));
+
+      this.addresss = client.address;
+
     }
   }
 
   getCreditCart(): void {
     if (!!this.authService.getCurrentUser()) {
       const client = this.authService.getCurrentUser();
-      this.subscription.push(this.creditCartService.getCreditCard(client.credit_card)
-      .subscribe(creditcard => {
-        this.creditcard = creditcard;
-      }));
+
+      this.creditcard = client.credit_card;
+
     }
   }
 
