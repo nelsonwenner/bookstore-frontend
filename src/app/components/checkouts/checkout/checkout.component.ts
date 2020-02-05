@@ -55,15 +55,19 @@ export class CheckoutComponent extends CartBaseComponent {
     status: environment.status_sale_default})
     .subscribe(response => {
 
+      const promises = [];
+
       this.cartList.forEach(cart => {
 
-        this.itemOrderService.itemOrder({
+        promises.push(this.itemOrderService.itemOrder({
           book: cart.book.url,
           order: response.url,
           amount: cart.quantity })
-        .subscribe(resp => { console.log(resp); });
+        .subscribe(resp => { console.log(resp); }));
 
       });
+
+      Promise.all(promises);
 
       this.loading();
     }));
