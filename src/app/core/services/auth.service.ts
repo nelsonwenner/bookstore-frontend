@@ -71,4 +71,5 @@ export class AuthService {
   public getCurrentUser(): Client {
     return JSON.parse(localStorage.getItem('currentUser'));
   }
+
 }
