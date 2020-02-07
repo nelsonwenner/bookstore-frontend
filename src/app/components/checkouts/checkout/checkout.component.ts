@@ -49,7 +49,7 @@ export class CheckoutComponent extends CartBaseComponent {
 
   ngOnInit() { }
 
-  createOrder(): void {
+  createOrder() {
 
     this.subscription.push(this.orderService.order({client: this.currentUser.url,
     status: environment.status_sale_default})
