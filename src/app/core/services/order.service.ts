@@ -23,6 +23,11 @@ export class OrderService {
     return this.http.get<any>(uri);
   }
 
+  public closeOrder(id): Observable<any> {      
+    const uri = `${environment.ApiRoot}/orders/${id}/close/`;
+    return this.http.put<any>(uri, {});
+  }
+
   public deleteOrder(id): Observable<any> {
     const uri = `${environment.ApiRoot}/orders/${id}/`;
     return this.http.delete<any>(uri);
