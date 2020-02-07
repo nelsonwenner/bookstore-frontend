@@ -29,7 +29,6 @@ export class CheckoutComponent extends CartBaseComponent {
 
   private creditcard: CreditCard;
   private addresss: Address;
-  private orderId: any;
 
   constructor(private creditCartService: CreditCardService,
               private itemOrderService: ItemOrderService,
@@ -55,9 +54,6 @@ export class CheckoutComponent extends CartBaseComponent {
     this.subscription.push(this.orderService.order({client: this.currentUser.url,
     status: environment.status_sale_default})
     .subscribe(response => {
-      
-      const split = response.url.split('/');
-      this.orderId = parseInt(split[split.length - 2])
 
       const promises = [];
 
@@ -110,8 +106,6 @@ export class CheckoutComponent extends CartBaseComponent {
           closeButton: true,
           timeOut: 15000,
         }));
-
-        this.orderService.closeOrder(this.orderId).subscribe(r => { console.log(r); })  // set status to closed
 
         resolve(this.router.navigate(['home']));
       }, 10000);
