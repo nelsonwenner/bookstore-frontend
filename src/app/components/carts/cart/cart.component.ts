@@ -31,8 +31,19 @@ export class CartComponent extends CartBaseComponent  {
   }
 
   changeQuantity(cart, quantity): void {
-    cart.quantity = quantity;
-    this.cartService.reloadCart(this.cartList);
+
+    if (quantity < cart.book.stock) {
+      cart.quantity = quantity;
+      this.cartService.reloadCart(this.cartList);
+    } else {
+      this.toastr.error('Unavailable amount in stock.', null, {
+        progressAnimation: 'decreasing',
+        positionClass: 'toast-bottom-right',
+        progressBar: true,
+        closeButton: true,
+        timeOut: 3000,
+      });
+    }
   }
 
   checkout(): void {

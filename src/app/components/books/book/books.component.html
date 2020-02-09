@@ -73,9 +73,19 @@
         <h3 style="margin: 0; font-weight: lighter; font-size: 15px;">{{ item.title }}</h3>
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <mat-icon fontSet="material-icons-outlined" style="color: #57b846;">attach_money</mat-icon>
-          <span style="font-weight: bold; font-size: 18px; margin-right: 200px; margin-top: 2px">
+          <span style="font-weight: bold; font-size: 18px; margin-right: 100px; margin-top: 2px">
           {{ item.prince }}
           </span>
+
+          <div *ngIf="item.stock > 0" style="margin-top: 5px;">
+            <span style=" margin-right: 0px; margin-top: 2px; margin-right: 2px;">In stock</span>
+            <mat-icon style="color: green !important;" class="check" fontSet="material-icons">check_circle</mat-icon>
+          </div>
+
+          <div *ngIf="item.stock == 0" style="margin-top: 5px;">
+            <span style=" margin-right: 0px; margin-top: 2px; margin-right: 2px;">In stock</span>
+            <mat-icon style="color: red !important;" class="check" fontSet="material-icons">check_circle</mat-icon>
+          </div>
         </div>
       </mat-card-content>
     </mat-card>

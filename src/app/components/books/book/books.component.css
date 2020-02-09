@@ -208,6 +208,16 @@ a{
   }
 }
 
+.check {
+  background-color: white !important;
+  font-size: 16px !important;
+  height: 18px !important;;
+  width: 18px !important;;
+  padding-right: 5px !important;;
+  position: relative !important;;
+  top: 3px !important;;
+}
+
 /* PAGINATIONS */
 
 .pagination-css {

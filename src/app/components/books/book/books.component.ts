@@ -85,15 +85,30 @@ export class BooksComponent implements OnInit, OnDestroy {
   }
 
   private addToCart(book): void {
-    this.cartService.addToCart({book, quantity: 1});
 
-    this.toastr.success('Product Added to the Cart', null, {
-      progressAnimation: 'decreasing',
-      positionClass: 'toast-bottom-right',
-      progressBar: true,
-      closeButton: true,
-      timeOut: 3000,
-    });
+    if (book.stock > 0) {
+
+      this.cartService.addToCart({book, quantity: 1});
+
+      this.toastr.success('Product Added to the Cart', null, {
+        progressAnimation: 'decreasing',
+        positionClass: 'toast-bottom-right',
+        progressBar: true,
+        closeButton: true,
+        timeOut: 3000,
+      });
+
+    } else {
+
+      this.toastr.error('Unavailable in stock.', null, {
+        progressAnimation: 'decreasing',
+        positionClass: 'toast-bottom-right',
+        progressBar: true,
+        closeButton: true,
+        timeOut: 3000,
+      });
+
+    }
   }
 
   private getBook(id: number): void {
